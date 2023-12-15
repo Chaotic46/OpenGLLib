@@ -7,8 +7,8 @@ TEST(OpenGLWindowTests, GLWindowSizeTest)
 	GLWindow window1;
 	GLWindow window2(200, 200, "Window2 Title");
 
-	EXPECT_EQ(window1.GetHeight(), 0);
-	EXPECT_EQ(window1.GetWidth(), 0);
+	EXPECT_EQ(window1.GetHeight(), 1);
+	EXPECT_EQ(window1.GetWidth(), 1);
 	EXPECT_EQ(window1.GetTitle(), std::string());
 
 	EXPECT_EQ(window2.GetHeight(), 200);
@@ -26,16 +26,7 @@ TEST(OpenGLWindowTests, GLWindowSizeTest)
 
 TEST(OpenGLWindowTests, GLVersionTest)
 {
-	GLWindow window;
-	GLWindow window2(200, 200, "Title", 4, 3);
-
-	EXPECT_EQ(window.GetGLMajor(), 1);
-	EXPECT_EQ(window.GetGLMinor(), 0);
-	EXPECT_EQ(window2.GetGLMajor(), 4);
-	EXPECT_EQ(window2.GetGLMinor(), 3);
-
-	window.SetMajor(3);
-	window.SetMinor(3);
+	GLWindow window(100, 100, "title", 3, 3);
 
 	EXPECT_EQ(window.GetGLMajor(), 3);
 	EXPECT_EQ(window.GetGLMinor(), 3);

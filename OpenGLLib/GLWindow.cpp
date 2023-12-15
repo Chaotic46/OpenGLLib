@@ -1,23 +1,29 @@
 #include "GLWindow.h"
 
 GLWindow::GLWindow() : _window(NULL),
-                       _width(0),
-                       _height(0),
-                       _title(),
-                       _major(1),
-                       _minor(0)
+                       _width(1),
+                       _height(1),
+                       _title()
 {
-	
+
 }
 
 GLWindow::GLWindow(unsigned int width, unsigned int height, std::string title, unsigned int major, unsigned int minor) : _window(NULL),
                                                                                                                          _width(width),
                                                                                                                          _height(height),
-                                                                                                                         _title(title),
-                                                                                                                         _major(major),
-                                                                                                                         _minor(minor)
+                                                                                                                         _title(title)
 {
-	
+    glfwInit();
+
+    CheckVersion(major, minor);
+    CheckSize(width, height);
+
+    SetMajor(major);
+    SetMinor(minor);
+
+    _window = glfwCreateWindow(_width, _height, _title.c_str(), NULL, NULL);
+
+    glfwMakeContextCurrent(_window);
 }
 
 GLWindow::~GLWindow()
@@ -42,12 +48,13 @@ std::string GLWindow::GetTitle() const
 
 unsigned int GLWindow::GetGLMajor() const
 {
-    return _major;
+    int test = glfwGetWindowAttrib(_window, GLFW_CONTEXT_VERSION_MAJOR);
+    return test;
 }
 
 unsigned int GLWindow::GetGLMinor() const
 {
-    return _minor;
+    return glfwGetWindowAttrib(_window, GLFW_CONTEXT_VERSION_MINOR);
 }
 
 void GLWindow::SetWidth(unsigned int width)
@@ -67,10 +74,71 @@ void GLWindow::SetTitle(std::string title)
 
 void GLWindow::SetMajor(unsigned int major)
 {
-    
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, major);
 }
 
 void GLWindow::SetMinor(unsigned int minor)
 {
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, minor);
+}
 
+void GLWindow::CheckVersion(unsigned int & major, unsigned int & minor)
+{
+    switch(major)
+    {
+        case(1):
+        {
+            if (minor > 5)
+            {
+                major = 1;
+                minor = 0;
+            }
+            break;
+        }
+        case(2):
+        {
+            if (minor > 1)
+            {
+                major = 1;
+                minor = 0;
+            }
+            break;
+        }
+        case(3):
+        {
+            if (minor > 3)
+            {
+                major = 1;
+                minor = 0;
+            }
+            break;
+        }
+        case(4):
+        {
+            if (minor > 6)
+            {
+                major = 1;
+                minor = 0;
+            }
+            break;
+        }
+        default:
+        {
+            major = 1;
+            minor = 0;
+        }
+    }
+}
+
+void GLWindow::CheckSize(unsigned int & width, unsigned int & height)
+{
+    if (width == 0)
+    {
+        width = 1;
+    }
+
+    if (height == 0)
+    {
+        height = 1;
+    }
 }

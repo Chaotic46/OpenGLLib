@@ -9,7 +9,7 @@ class GLWindow
 {
 public:
 	GLWindow();
-	GLWindow(unsigned int width, unsigned int height, std::string title, unsigned int major = 1, unsigned int minor = 0);
+	GLWindow(unsigned int width, unsigned int height, std::string title, unsigned int major = 3, unsigned int minor = 3);
 	~GLWindow();
 
 	unsigned int GetWidth()   const;
@@ -21,18 +21,18 @@ public:
 	void SetWidth(unsigned int width);
 	void SetHeight(unsigned int width);
 	void SetTitle(std::string title);
-	void SetMajor(unsigned int major);
-	void SetMinor(unsigned int minor);
 
 private:
+	void SetMajor(unsigned int major);
+	void SetMinor(unsigned int minor);
+	void CheckVersion(unsigned int & major, unsigned int & minor);
+	void CheckSize(unsigned int & width, unsigned int & height);
+
 	GLFWwindow * _window;
 
 	unsigned int _width;
 	unsigned int _height;
 	std::string  _title;
-
-	unsigned int _major;
-	unsigned int _minor;
 };
 
 #endif
