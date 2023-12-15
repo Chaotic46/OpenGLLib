@@ -1,0 +1,7 @@
+# Ignore all build directories
+x64
+
+# Ignore extra visual studio files
+.vs
+*.user
+*.config
