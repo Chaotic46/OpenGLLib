@@ -38,15 +38,15 @@ std::string GLWindow::GetTitle() const
 
 void GLWindow::SetWidth(unsigned int width)
 {
-    
+    _width = width;
 }
 
 void GLWindow::SetHeight(unsigned int height)
 {
-
+    _height = height;
 }
 
 void GLWindow::SetTitle(std::string title)
 {
-
+    _title = title;
 }
