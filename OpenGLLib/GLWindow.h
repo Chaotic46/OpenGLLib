@@ -3,6 +3,8 @@
 
 #include <string>
 
+#include "GLCommon.h"
+
 #include "GLFW/glfw3.h"
 
 class GLWindow
@@ -12,12 +14,14 @@ public:
 	GLWindow(unsigned int width, unsigned int height, std::string title, unsigned int major = 3, unsigned int minor = 3);
 	~GLWindow();
 
+	GLSize       GetSize()    const;
 	unsigned int GetWidth()   const;
 	unsigned int GetHeight()  const;
 	std::string  GetTitle()   const;
 	unsigned int GetGLMajor() const;
 	unsigned int GetGLMinor() const;
 
+	void SetSize(GLSize size);
 	void SetWidth(unsigned int width);
 	void SetHeight(unsigned int width);
 	void SetTitle(std::string title);

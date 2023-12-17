@@ -14,5 +14,6 @@
     <ClInclude Include="GLWindow.h">
       <Filter>Windows</Filter>
     </ClInclude>
+    <ClInclude Include="GLCommon.h" />
   </ItemGroup>
 </Project>

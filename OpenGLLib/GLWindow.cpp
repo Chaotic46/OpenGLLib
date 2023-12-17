@@ -31,6 +31,11 @@ GLWindow::~GLWindow()
 	
 }
 
+GLSize GLWindow::GetSize() const
+{
+    return GLSize();
+}
+
 unsigned int GLWindow::GetHeight() const
 {
     return _height;
@@ -55,6 +60,11 @@ unsigned int GLWindow::GetGLMajor() const
 unsigned int GLWindow::GetGLMinor() const
 {
     return glfwGetWindowAttrib(_window, GLFW_CONTEXT_VERSION_MINOR);
+}
+
+void GLWindow::SetSize(GLSize size)
+{
+    
 }
 
 void GLWindow::SetWidth(unsigned int width)
