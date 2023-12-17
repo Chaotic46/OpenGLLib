@@ -1,7 +1,7 @@
 # Ignore all build directories (except the packages directories)
-./x64
-./OpenGLLib/x64
-./OpenGLTest/x64
+./x64/*
+./OpenGLLib/x64/*
+./OpenGLTest/x64/*
 
 # Ignore extra visual studio files
 .vs
