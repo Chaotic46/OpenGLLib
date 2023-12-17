@@ -3,6 +3,6 @@
 
 #include <utility>
 
-typedef std::pair<unsigned int, unsigned int> GLSize;
+typedef std::pair<int, int> GLSize;
 
 #endif

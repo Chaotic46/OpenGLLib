@@ -1,29 +1,29 @@
+#include "glad/glad.h"
 #include "GLWindow.h"
 
-GLWindow::GLWindow() : _window(NULL),
-                       _width(1),
-                       _height(1),
-                       _title()
+GLWindow::GLWindow() : _window(NULL)
 {
 
 }
 
-GLWindow::GLWindow(unsigned int width, unsigned int height, std::string title, unsigned int major, unsigned int minor) : _window(NULL),
-                                                                                                                         _width(width),
-                                                                                                                         _height(height),
-                                                                                                                         _title(title)
+GLWindow::GLWindow(GLSize size, std::string title, unsigned int major, unsigned int minor) : _window(NULL),
+                                                                                             _title(title)
 {
     glfwInit();
 
     CheckVersion(major, minor);
-    CheckSize(width, height);
+    CheckSize(size);
 
     SetMajor(major);
     SetMinor(minor);
 
-    _window = glfwCreateWindow(_width, _height, _title.c_str(), NULL, NULL);
+    glfwWindowHint(GLFW_DECORATED, GLFW_FALSE);
+
+    _window = glfwCreateWindow(size.first, size.second, title.c_str(), NULL, NULL);
 
     glfwMakeContextCurrent(_window);
+
+    gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
 }
 
 GLWindow::~GLWindow()
@@ -33,21 +33,21 @@ GLWindow::~GLWindow()
 
 GLSize GLWindow::GetSize() const
 {
-    return GLSize();
-}
+    if (!_window)
+    {
+        return GLSize();
+    }
 
-unsigned int GLWindow::GetHeight() const
-{
-    return _height;
-}
+    GLSize size;
 
-unsigned int GLWindow::GetWidth() const
-{
-    return _width;
+    glfwGetWindowSize(_window, &size.first, &size.second);
+
+    return size;
 }
 
 std::string GLWindow::GetTitle() const
 {
+    // There is no glfw method to obtain the window title, thus we have to use a variable to keep track of it.
     return _title;
 }
 
@@ -64,21 +64,24 @@ unsigned int GLWindow::GetGLMinor() const
 
 void GLWindow::SetSize(GLSize size)
 {
-    
-}
+    if (!_window)
+    {
+        return;
+    }
 
-void GLWindow::SetWidth(unsigned int width)
-{
-    _width = width;
-}
+    CheckSize(size);
 
-void GLWindow::SetHeight(unsigned int height)
-{
-    _height = height;
+    glfwSetWindowSize(_window, size.first, size.second);
 }
 
 void GLWindow::SetTitle(std::string title)
 {
+    if (!_window)
+    {
+        return;
+    }
+
+    glfwSetWindowTitle(_window, title.c_str());
     _title = title;
 }
 
@@ -140,15 +143,15 @@ void GLWindow::CheckVersion(unsigned int & major, unsigned int & minor)
     }
 }
 
-void GLWindow::CheckSize(unsigned int & width, unsigned int & height)
+void GLWindow::CheckSize(GLSize size)
 {
-    if (width == 0)
+    if (size.first < 1)
     {
-        width = 1;
+        size.first = 1;
     }
 
-    if (height == 0)
+    if (size.second < 1)
     {
-        height = 1;
+        size.second = 1;
     }
 }
