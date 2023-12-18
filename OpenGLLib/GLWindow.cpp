@@ -64,7 +64,7 @@ unsigned int GLWindow::GetGLMinor() const
 
 GLRGBA GLWindow::GetBackgroundColour() const
 {
-    return GLRGBA();
+    return _backgroundColour;
 }
 
 void GLWindow::SetSize(GLSize size)
@@ -92,7 +92,7 @@ void GLWindow::SetTitle(std::string title)
 
 void GLWindow::SetBackgroundColour(GLRGBA backgroundColour)
 {
-    
+    _backgroundColour = backgroundColour;
 }
 
 void GLWindow::SetMajor(unsigned int major)
