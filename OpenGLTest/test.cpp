@@ -33,3 +33,25 @@ TEST(OpenGLWindowTests, GLVersionTest)
 	EXPECT_EQ(window.GetGLMajor(), 3);
 	EXPECT_EQ(window.GetGLMinor(), 3);
 }
+
+
+TEST(OpenGLRGBATest, GLRGBATest)
+{
+	GLRGBA rgba;
+
+	EXPECT_EQ(rgba.GetR(), 0.0f);
+	EXPECT_EQ(rgba.GetG(), 0.0f);
+	EXPECT_EQ(rgba.GetB(), 0.0f);
+	EXPECT_EQ(rgba.GetA(), 0.0f);
+
+	rgba.SetR(0.5f);
+	rgba.SetG(0.4f);
+	rgba.SetB(0.6f);
+	rgba.SetA(1.5f);
+
+	EXPECT_EQ(rgba.GetR(), 0.5f);
+	EXPECT_EQ(rgba.GetG(), 0.4f);
+	EXPECT_EQ(rgba.GetB(), 0.6f);
+	EXPECT_EQ(rgba.GetA(), 1.0f);
+
+}
