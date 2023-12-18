@@ -17,6 +17,11 @@ public:
 		SetA(a);
 	}
 
+	friend bool operator==(const GLRGBA& colour1, const GLRGBA& colour2)
+	{
+		return (colour1._r == colour2._r) && (colour1._g == colour2._g) && (colour1._b == colour2._b) && (colour1._a == colour2._a);
+	}
+
 	void SetR(float r) { _r = BoundCheck(r); }
 	void SetG(float g) { _g = BoundCheck(g); }
 	void SetB(float b) { _b = BoundCheck(b); }

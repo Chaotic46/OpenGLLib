@@ -62,6 +62,11 @@ unsigned int GLWindow::GetGLMinor() const
     return glfwGetWindowAttrib(_window, GLFW_CONTEXT_VERSION_MINOR);
 }
 
+GLRGBA GLWindow::GetBackgroundColour() const
+{
+    return GLRGBA();
+}
+
 void GLWindow::SetSize(GLSize size)
 {
     if (!_window)
@@ -83,6 +88,11 @@ void GLWindow::SetTitle(std::string title)
 
     glfwSetWindowTitle(_window, title.c_str());
     _title = title;
+}
+
+void GLWindow::SetBackgroundColour(GLRGBA backgroundColour)
+{
+    
 }
 
 void GLWindow::SetMajor(unsigned int major)

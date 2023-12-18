@@ -18,9 +18,11 @@ public:
 	std::string  GetTitle()   const;
 	unsigned int GetGLMajor() const;
 	unsigned int GetGLMinor() const;
+	GLRGBA       GetBackgroundColour() const;
 
 	void SetSize(GLSize size);
 	void SetTitle(std::string title);
+	void SetBackgroundColour(GLRGBA backgroundColour);
 
 private:
 	void SetMajor(unsigned int major);
@@ -30,6 +32,7 @@ private:
 
 	GLFWwindow * _window;
 	std::string  _title;
+	GLRGBA       _backgroundColour;
 };
 
 #endif
