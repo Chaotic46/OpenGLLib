@@ -8,19 +8,30 @@ typedef std::pair<int, int> GLSize;
 struct GLRGBA
 {
 public:
-	GLRGBA() {}
-	GLRGBA(float r, float g, float b, float a) {}
+	GLRGBA() : _r(0.0f), _g(0.0f), _b(0.0f), _a(0.0f) {}
+	GLRGBA(float r, float g, float b, float a)
+	{
+		SetR(r);
+		SetG(g);
+		SetB(b);
+		SetA(a);
+	}
 
-	void SetR(float r) {}
-	void SetG(float g) {}
-	void SetB(float b) {}
-	void SetA(float a) {}
+	void SetR(float r) { _r = BoundCheck(r); }
+	void SetG(float g) { _g = BoundCheck(g); }
+	void SetB(float b) { _b = BoundCheck(b); }
+	void SetA(float a) { _a = BoundCheck(a); }
 
-	float GetR() const {return 0.0f;}
-	float GetG() const {return 0.0f;}
-	float GetB() const {return 0.0f;}
-	float GetA() const {return 0.0f;}
+	float GetR() const { return _r; }
+	float GetG() const { return _g; }
+	float GetB() const { return _b; }
+	float GetA() const { return _a; }
 private:
+	float BoundCheck(float input)
+	{
+		return (input > 1.0f ? 1.0f : input < 0.0f ? 0.0f : input);
+	}
+
 	float _r;
 	float _g;
 	float _b;
