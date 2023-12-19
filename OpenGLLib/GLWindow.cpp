@@ -115,6 +115,51 @@ void GLWindow::Hide()
     }
 }
 
+GLFWkeyfun GLWindow::SetKeyCallback(GLFWkeyfun callback)
+{
+    return NULL;
+}
+
+GLFWcharfun GLWindow::SetCharCallback(GLFWcharfun callback)
+{
+    return NULL;
+}
+
+GLFWcharmodsfun GLWindow::SetCharModsCallback(GLFWcharmodsfun callback)
+{
+    return NULL;
+}
+
+GLFWcursorposfun GLWindow::SetCursorPosCallback(GLFWcursorposfun callback)
+{
+    return NULL;
+}
+
+GLFWcursorenterfun GLWindow::SetCursorEnterCallback(GLFWcursorenterfun callback)
+{
+    return NULL;
+}
+
+GLFWmousebuttonfun GLWindow::SetMouseButtonCallback(GLFWmousebuttonfun callback)
+{
+    return NULL;
+}
+
+GLFWscrollfun GLWindow::SetScrollCallback(GLFWscrollfun callback)
+{
+    return NULL;
+}
+
+GLFWjoystickfun GLWindow::SetJoystickCallback(GLFWjoystickfun callback)
+{
+    return NULL;
+}
+
+GLFWdropfun GLWindow::SetDropCallback(GLFWdropfun callback)
+{
+    return NULL;
+}
+
 void GLWindow::SetMajor(unsigned int major)
 {
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, major);

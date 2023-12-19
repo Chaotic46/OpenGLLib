@@ -2,6 +2,16 @@
 
 #include "../OpenGLLib/GLWindow.h"
 
+void KeyCallbackTest(GLFWwindow* window, int key, int scancode, int action, int mods) {}
+void CharCallbackTest(GLFWwindow* window, unsigned int codepoint)                     {}
+void CharModsCallbackTest(GLFWwindow* window, unsigned int codepoint, int mods)       {}
+void CursorPosCallbackTest(GLFWwindow* window, double xpos, double ypos)              {}
+void CursorEnterCallbackTest(GLFWwindow* window, int entered)                         {}
+void MouseButtonCallbackTest(GLFWwindow* window, int button, int action, int mods)    {}
+void ScrollCallbackTest(GLFWwindow* window, double xoffset, double yoffset)           {}
+void JoystickCallbackTest(int jid, int event)                                         {}
+void DropCallbackTest(GLFWwindow* window, int path_count, const char* paths[])        {}
+
 TEST(OpenGLRGBATest, GLRGBATest)
 {
 	GLRGBA rgba;
@@ -66,3 +76,34 @@ TEST(OpenGLWindowTests, GLBackgroundColourTest)
 	EXPECT_EQ(window1.GetBackgroundColour(), backgroundColour);
 }
 
+TEST(OpenGLWindowTests, GLCallbackTest)
+{
+	GLWindow window(GLSize(200, 200), " ");
+
+	EXPECT_TRUE(window.SetKeyCallback(KeyCallbackTest) == NULL);
+	EXPECT_TRUE(window.SetKeyCallback(NULL) == KeyCallbackTest);
+
+	EXPECT_TRUE(window.SetCharCallback(CharCallbackTest) == NULL);
+	EXPECT_TRUE(window.SetCharCallback(NULL) == CharCallbackTest);
+
+	EXPECT_TRUE(window.SetCharModsCallback(CharModsCallbackTest) == NULL);
+	EXPECT_TRUE(window.SetCharModsCallback(NULL) == CharModsCallbackTest);
+
+	EXPECT_TRUE(window.SetCursorPosCallback(CursorPosCallbackTest) == NULL);
+	EXPECT_TRUE(window.SetCursorPosCallback(NULL) == CursorPosCallbackTest);
+
+	EXPECT_TRUE(window.SetCursorEnterCallback(CursorEnterCallbackTest) == NULL);
+	EXPECT_TRUE(window.SetCursorEnterCallback(NULL) == CursorEnterCallbackTest);
+
+	EXPECT_TRUE(window.SetMouseButtonCallback(MouseButtonCallbackTest) == NULL);
+	EXPECT_TRUE(window.SetMouseButtonCallback(NULL) == MouseButtonCallbackTest);
+
+	EXPECT_TRUE(window.SetScrollCallback(ScrollCallbackTest) == NULL);
+	EXPECT_TRUE(window.SetScrollCallback(NULL) == ScrollCallbackTest);
+
+	EXPECT_TRUE(window.SetJoystickCallback(JoystickCallbackTest) == NULL);
+	EXPECT_TRUE(window.SetJoystickCallback(NULL) == JoystickCallbackTest);
+
+	EXPECT_TRUE(window.SetDropCallback(DropCallbackTest) == NULL);
+	EXPECT_TRUE(window.SetDropCallback(NULL) == DropCallbackTest);
+}
