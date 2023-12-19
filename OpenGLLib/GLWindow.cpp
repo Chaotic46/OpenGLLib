@@ -28,8 +28,12 @@ GLWindow::GLWindow(GLSize size, std::string title, unsigned int major, unsigned 
 
 GLWindow::~GLWindow()
 {
-	
+    if (_window)
+    {
+        glfwDestroyWindow(_window);
+    }
 }
+
 
 GLSize GLWindow::GetSize() const
 {
@@ -93,6 +97,22 @@ void GLWindow::SetTitle(std::string title)
 void GLWindow::SetBackgroundColour(GLRGBA backgroundColour)
 {
     _backgroundColour = backgroundColour;
+}
+
+void GLWindow::Show()
+{
+    if (_window)
+    {
+        glfwShowWindow(_window);
+    }
+}
+
+void GLWindow::Hide()
+{
+    if (_window)
+    {
+        glfwHideWindow(_window);
+    }
 }
 
 void GLWindow::SetMajor(unsigned int major)
