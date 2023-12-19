@@ -117,47 +117,47 @@ void GLWindow::Hide()
 
 GLFWkeyfun GLWindow::SetKeyCallback(GLFWkeyfun callback)
 {
-    return NULL;
+    return glfwSetKeyCallback(_window, callback);
 }
 
 GLFWcharfun GLWindow::SetCharCallback(GLFWcharfun callback)
 {
-    return NULL;
+    return glfwSetCharCallback(_window, callback);
 }
 
 GLFWcharmodsfun GLWindow::SetCharModsCallback(GLFWcharmodsfun callback)
 {
-    return NULL;
+    return glfwSetCharModsCallback(_window, callback);
 }
 
 GLFWcursorposfun GLWindow::SetCursorPosCallback(GLFWcursorposfun callback)
 {
-    return NULL;
+    return glfwSetCursorPosCallback(_window, callback);
 }
 
 GLFWcursorenterfun GLWindow::SetCursorEnterCallback(GLFWcursorenterfun callback)
 {
-    return NULL;
+    return glfwSetCursorEnterCallback(_window, callback);
 }
 
 GLFWmousebuttonfun GLWindow::SetMouseButtonCallback(GLFWmousebuttonfun callback)
 {
-    return NULL;
+    return glfwSetMouseButtonCallback(_window, callback);
 }
 
 GLFWscrollfun GLWindow::SetScrollCallback(GLFWscrollfun callback)
 {
-    return NULL;
+    return glfwSetScrollCallback(_window, callback);
 }
 
 GLFWjoystickfun GLWindow::SetJoystickCallback(GLFWjoystickfun callback)
 {
-    return NULL;
+    return glfwSetJoystickCallback(callback);
 }
 
 GLFWdropfun GLWindow::SetDropCallback(GLFWdropfun callback)
 {
-    return NULL;
+    return glfwSetDropCallback(_window, callback);
 }
 
 void GLWindow::SetMajor(unsigned int major)
