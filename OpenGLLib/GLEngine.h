@@ -4,6 +4,9 @@
 #include "GLWindow.h"
 
 #include <vector>
+#include <thread>
+#include <future>
+#include <chrono>
 
 class GLEngine
 {
@@ -30,16 +33,24 @@ private:
 	{
 	public:
 		EngineRenderingThread(GLEngine* engine);
+		~EngineRenderingThread();
+
+		bool StartRendering();
+		bool StopRendering();
+		bool IsThreadRendering();
 
 		static void RenderThread(EngineRenderingThread* renderThread);
-		bool        IsThreadRendering();
 
 	private:
 		GLEngine * _engine;
 		bool       _renderAgain;
+
+		std::thread*                                      _renderingThreadHandle;
+		std::future<void>                                 _threadStatus;
+		std::packaged_task<void(EngineRenderingThread*)>* _threadTask;
 	};
 
-	EngineRenderingThread _renderingThread;
+	EngineRenderingThread                             _renderingThread;
 };
 
 #endif

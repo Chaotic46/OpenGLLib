@@ -40,10 +40,11 @@ TEST(OpenGLEngineTests, OpenGLStartRenderingThreadTest)
 	GLEngine* engine = GLEngine::GetInstance();
 
 	EXPECT_TRUE(engine->StartThread());
+	EXPECT_FALSE(engine->StartThread());
 
 	EXPECT_TRUE(engine->IsThreadRendering());
-
 	EXPECT_TRUE(engine->StopThread());
+	EXPECT_FALSE(engine->StopThread());
 
 	EXPECT_FALSE(engine->IsThreadRendering());
 }
