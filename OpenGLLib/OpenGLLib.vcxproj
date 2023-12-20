@@ -133,10 +133,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\OpenGLLib-main\OpenGLLib\GLEngine.h" />
     <ClInclude Include="GLCommon.h" />
     <ClInclude Include="GLWindow.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\OpenGLLib-main\OpenGLLib\GLEngine.cpp" />
     <ClCompile Include="..\thirdparty\include\glad\src\glad.c" />
     <ClCompile Include="GLWindow.cpp" />
   </ItemGroup>

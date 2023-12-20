@@ -4,17 +4,26 @@
     <Filter Include="Windows">
       <UniqueIdentifier>{11f6e6f8-a5f8-400b-bcfa-52b0e7623c68}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine">
+      <UniqueIdentifier>{4946a70d-2fe2-4678-8de4-edbbf448780b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GLWindow.cpp">
       <Filter>Windows</Filter>
     </ClCompile>
     <ClCompile Include="..\thirdparty\include\glad\src\glad.c" />
+    <ClCompile Include="..\..\OpenGLLib-main\OpenGLLib\GLEngine.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GLWindow.h">
       <Filter>Windows</Filter>
     </ClInclude>
     <ClInclude Include="GLCommon.h" />
+    <ClInclude Include="..\..\OpenGLLib-main\OpenGLLib\GLEngine.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
