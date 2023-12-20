@@ -18,15 +18,19 @@ GLEngine* GLEngine::GetInstance()
 
 void GLEngine::PushGLWindow(GLWindow* window)
 {
-	
+	_windowVector.push_back(window);
 }
 
 GLWindow* GLEngine::PopGLWindow(unsigned int index)
 {
-	return NULL;
+	GLWindow* window = _windowVector.at(index);
+
+	_windowVector.erase(_windowVector.begin() + index);
+
+	return window;
 }
 
-GLWindow* GLEngine::operator[](unsigned int inex)
+GLWindow* GLEngine::operator[](unsigned int index)
 {
-	return NULL;
+	return _windowVector.at(index);
 }

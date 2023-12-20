@@ -3,6 +3,8 @@
 
 #include "GLWindow.h"
 
+#include <vector>
+
 class GLEngine
 {
 public:
@@ -16,6 +18,8 @@ public:
 private:
 	GLEngine();
 	~GLEngine();
+
+	std::vector<GLWindow*> _windowVector;
 };
 
 #endif

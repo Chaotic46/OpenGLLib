@@ -12,7 +12,7 @@ TEST(OpenGLEngineTests, OpenGLEngineInstanceTest)
 	EXPECT_TRUE(engine1 == engine2);
 }
 
-TEST(OpenGLEngineTests, OpenGLEngineAddWindowTest)
+TEST(OpenGLEngineTests, OpenGLEngineAddAndRemoveWindowTest)
 {
 	GLWindow* window1 = new GLWindow();
 	GLWindow* window2 = new GLWindow();
