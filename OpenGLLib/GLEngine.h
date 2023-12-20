@@ -15,11 +15,31 @@ public:
 
 	GLWindow* operator[](unsigned int index);
 
+	bool StartThread();
+	bool StopThread();
+	bool IsThreadRendering();
+
 private:
 	GLEngine();
 	~GLEngine();
 
 	std::vector<GLWindow*> _windowVector;
+
+	// Embedded thread class to handle rendering all the windows in GLEngine
+	class EngineRenderingThread
+	{
+	public:
+		EngineRenderingThread(GLEngine* engine);
+
+		static void RenderThread(EngineRenderingThread* renderThread);
+		bool        IsThreadRendering();
+
+	private:
+		GLEngine * _engine;
+		bool       _renderAgain;
+	};
+
+	EngineRenderingThread _renderingThread;
 };
 
 #endif

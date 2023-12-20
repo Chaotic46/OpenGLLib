@@ -1,6 +1,6 @@
 #include "GLEngine.h"
 
-GLEngine::GLEngine()
+GLEngine::GLEngine() : _renderingThread(this)
 {
 	
 }
@@ -34,3 +34,30 @@ GLWindow* GLEngine::operator[](unsigned int index)
 {
 	return _windowVector.at(index);
 }
+
+bool GLEngine::StartThread()
+{
+	return false;
+}
+
+bool GLEngine::StopThread()
+{
+	return false;
+}
+
+bool GLEngine::IsThreadRendering()
+{
+	return false;
+}
+
+// EngineRenderingThread methods
+GLEngine::EngineRenderingThread::EngineRenderingThread(GLEngine* engine) : _engine(engine)
+{}
+
+bool GLEngine::EngineRenderingThread::IsThreadRendering()
+{
+	return true;
+}
+
+void GLEngine::EngineRenderingThread::RenderThread(EngineRenderingThread* renderThread)
+{}

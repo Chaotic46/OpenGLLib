@@ -34,3 +34,16 @@ TEST(OpenGLEngineTests, OpenGLEngineAddAndRemoveWindowTest)
 	EXPECT_EQ(engine->PopGLWindow(0), window2);
 	EXPECT_THROW(engine->PopGLWindow(0), std::out_of_range);
 }
+
+TEST(OpenGLEngineTests, OpenGLStartRenderingThreadTest)
+{
+	GLEngine* engine = GLEngine::GetInstance();
+
+	EXPECT_TRUE(engine->StartThread());
+
+	EXPECT_TRUE(engine->IsThreadRendering());
+
+	EXPECT_TRUE(engine->StopThread());
+
+	EXPECT_FALSE(engine->IsThreadRendering());
+}
