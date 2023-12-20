@@ -34,6 +34,11 @@ GLWindow::~GLWindow()
     }
 }
 
+bool GLWindow::IsInitialized()
+{
+    return false;
+}
+
 GLSize GLWindow::GetSize() const
 {
     if (!_window)
@@ -70,6 +75,14 @@ GLRGBA GLWindow::GetBackgroundColour() const
     return _backgroundColour;
 }
 
+void GLWindow::SetCurrentContext()
+{
+    if (_window)
+    {
+        glfwMakeContextCurrent(_window);
+    }
+}
+
 void GLWindow::SetSize(GLSize size)
 {
     if (!_window)
@@ -96,6 +109,20 @@ void GLWindow::SetTitle(std::string title)
 void GLWindow::SetBackgroundColour(GLRGBA backgroundColour)
 {
     _backgroundColour = backgroundColour;
+}
+
+void GLWindow::ClearBackground()
+{
+    glClearColor(_backgroundColour.GetR(), _backgroundColour.GetG(), _backgroundColour.GetB(), _backgroundColour.GetA());
+    glClear(GL_COLOR_BUFFER_BIT);
+}
+
+void GLWindow::SwapBuffers()
+{
+    if (_window)
+    {
+        glfwSwapBuffers(_window);
+    }
 }
 
 void GLWindow::Show()

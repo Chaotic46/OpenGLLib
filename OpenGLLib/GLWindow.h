@@ -14,15 +14,21 @@ public:
 	GLWindow(GLSize size, std::string title, unsigned int major = 3, unsigned int minor = 3);
 	~GLWindow();
 
+	bool IsInitialized();
+
 	GLSize       GetSize()             const;
 	std::string  GetTitle()            const;
 	unsigned int GetGLMajor()          const;
 	unsigned int GetGLMinor()          const;
 	GLRGBA       GetBackgroundColour() const;
 
+	void SetCurrentContext();
 	void SetSize(GLSize size);
 	void SetTitle(std::string title);
 	void SetBackgroundColour(GLRGBA backgroundColour);
+
+	void ClearBackground();
+	void SwapBuffers();
 
 	void Show();
 	void Hide();

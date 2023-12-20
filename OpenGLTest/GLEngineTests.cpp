@@ -14,15 +14,17 @@ TEST(OpenGLEngineTests, OpenGLEngineInstanceTest)
 
 TEST(OpenGLEngineTests, OpenGLEngineAddAndRemoveWindowTest)
 {
-	GLWindow* window1 = new GLWindow();
-	GLWindow* window2 = new GLWindow();
-	GLWindow* window3 = new GLWindow();
+	GLWindow* window0 = new GLWindow();
+	GLWindow* window1 = new GLWindow(GLSize(100, 100), " ");
+	GLWindow* window2 = new GLWindow(GLSize(100, 100), " ");
+	GLWindow* window3 = new GLWindow(GLSize(100, 100), " ");
 
 	GLEngine* engine = GLEngine::GetInstance();
 
-	engine->PushGLWindow(window1);
-	engine->PushGLWindow(window2);
-	engine->PushGLWindow(window3);
+	EXPECT_FALSE(engine->PushGLWindow(window0));
+	EXPECT_TRUE(engine->PushGLWindow(window1));
+	EXPECT_TRUE(engine->PushGLWindow(window2));
+	EXPECT_TRUE(engine->PushGLWindow(window3));
 
 	EXPECT_EQ((*engine)[0], window1);
 	EXPECT_EQ((*engine)[1], window2);
@@ -40,10 +42,11 @@ TEST(OpenGLEngineTests, OpenGLStartRenderingThreadTest)
 	GLEngine* engine = GLEngine::GetInstance();
 
 	EXPECT_TRUE(engine->StartThread());
+	EXPECT_FALSE(engine->StartThread());
 
 	EXPECT_TRUE(engine->IsThreadRendering());
-
 	EXPECT_TRUE(engine->StopThread());
+	EXPECT_FALSE(engine->StopThread());
 
 	EXPECT_FALSE(engine->IsThreadRendering());
 }
