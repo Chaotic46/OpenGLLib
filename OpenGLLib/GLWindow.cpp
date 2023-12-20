@@ -1,13 +1,15 @@
 #include "glad/glad.h"
 #include "GLWindow.h"
 
-GLWindow::GLWindow() : _window(NULL)
+GLWindow::GLWindow() : _window(NULL),
+                       _initialized(false)
 {
 
 }
 
 GLWindow::GLWindow(GLSize size, std::string title, unsigned int major, unsigned int minor) : _window(NULL),
-                                                                                             _title(title)
+                                                                                             _title(title),
+                                                                                             _initialized(true)
 {
     glfwInit();
 
@@ -36,7 +38,7 @@ GLWindow::~GLWindow()
 
 bool GLWindow::IsInitialized()
 {
-    return false;
+    return _initialized;
 }
 
 GLSize GLWindow::GetSize() const

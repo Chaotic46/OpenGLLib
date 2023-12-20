@@ -31,12 +31,14 @@ GLEngine* GLEngine::GetInstance()
 
 bool GLEngine::PushGLWindow(GLWindow* window)
 {
-	if (window->IsInitialized())
+	if (!window->IsInitialized())
 	{
-		_windowVector.push_back(window);
+		return false;
 	}
 
-	return false;
+	_windowVector.push_back(window);
+
+	return true;
 }
 
 GLWindow* GLEngine::PopGLWindow(unsigned int index)

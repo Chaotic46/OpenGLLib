@@ -67,6 +67,7 @@ private:
 	GLFWwindow * _window;
 	std::string  _title;
 	GLRGBA       _backgroundColour;
+	bool         _initialized;
 };
 
 #endif
