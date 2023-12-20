@@ -27,6 +27,7 @@ public:
 	void Show();
 	void Hide();
 
+	// Callbacks to user inputs
 	GLFWkeyfun         SetKeyCallback(GLFWkeyfun callback);
 	GLFWcharfun        SetCharCallback(GLFWcharfun callback);
 	GLFWcharmodsfun    SetCharModsCallback(GLFWcharmodsfun callback);
@@ -36,6 +37,20 @@ public:
 	GLFWscrollfun      SetScrollCallback(GLFWscrollfun callback);
 	GLFWjoystickfun    SetJoystickCallback(GLFWjoystickfun callback);
 	GLFWdropfun        SetDropCallback(GLFWdropfun callback);
+
+	// Callbacks to modifications to the window
+	GLFWwindowposfun          SetWindowPosCallback(GLFWwindowposfun callback);
+	GLFWwindowsizefun         SetWindowSizeCallback(GLFWwindowsizefun callback);
+	GLFWwindowclosefun        SetWindowCloseCallback(GLFWwindowclosefun callback);
+	GLFWwindowrefreshfun      SetWindowRefreshCallback(GLFWwindowrefreshfun callback);
+	GLFWwindowfocusfun        SetWindowFocusCallback(GLFWwindowfocusfun callback);
+	GLFWwindowiconifyfun      SetWindowIconifyCallback(GLFWwindowiconifyfun callback);
+	GLFWwindowmaximizefun     SetWindowMaximizeCallback(GLFWwindowmaximizefun callback);
+	GLFWframebuffersizefun    SetFramebufferSizeCallback(GLFWframebuffersizefun callback);
+	GLFWwindowcontentscalefun SetWindowContentScaleCallback(GLFWwindowcontentscalefun callback);
+
+	// Callbacks related to monitors
+	GLFWmonitorfun SetMonitorCallback(GLFWmonitorfun callback);
 
 private:
 	void SetMajor(unsigned int major);

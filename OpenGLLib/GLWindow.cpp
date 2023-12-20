@@ -115,49 +115,137 @@ void GLWindow::Hide()
     }
 }
 
+/* \brief Sets a keyboard input callback
+ */
 GLFWkeyfun GLWindow::SetKeyCallback(GLFWkeyfun callback)
 {
     return glfwSetKeyCallback(_window, callback);
 }
 
+/* \brief Sets a unicode character input callback
+ */
 GLFWcharfun GLWindow::SetCharCallback(GLFWcharfun callback)
 {
     return glfwSetCharCallback(_window, callback);
 }
 
+/* \brief Sets a custom unicode character input callback
+ */
 GLFWcharmodsfun GLWindow::SetCharModsCallback(GLFWcharmodsfun callback)
 {
     return glfwSetCharModsCallback(_window, callback);
 }
 
+/* \brief Sets a callback for mouse movement in the window
+ */
 GLFWcursorposfun GLWindow::SetCursorPosCallback(GLFWcursorposfun callback)
 {
     return glfwSetCursorPosCallback(_window, callback);
 }
 
+/* \brief Sets a callback for the mouse entering/exiting the window
+ */
 GLFWcursorenterfun GLWindow::SetCursorEnterCallback(GLFWcursorenterfun callback)
 {
     return glfwSetCursorEnterCallback(_window, callback);
 }
 
+/* \brief Sets a callback for mouse button input in the window
+ */
 GLFWmousebuttonfun GLWindow::SetMouseButtonCallback(GLFWmousebuttonfun callback)
 {
     return glfwSetMouseButtonCallback(_window, callback);
 }
 
+/* \brief Sets a callback for scrolling in the window
+ */
 GLFWscrollfun GLWindow::SetScrollCallback(GLFWscrollfun callback)
 {
     return glfwSetScrollCallback(_window, callback);
 }
 
+/* \brief Sets a callback that activates when a joystick is connected/disconnected from the system.
+ */
 GLFWjoystickfun GLWindow::SetJoystickCallback(GLFWjoystickfun callback)
 {
     return glfwSetJoystickCallback(callback);
 }
 
+/* \brief Sets a callback that activates when a path(s) are dropped into the window
+ */
 GLFWdropfun GLWindow::SetDropCallback(GLFWdropfun callback)
 {
     return glfwSetDropCallback(_window, callback);
+}
+
+/* \brief Sets a callback that activates when the window moves
+ */
+GLFWwindowposfun GLWindow::SetWindowPosCallback(GLFWwindowposfun callback)
+{
+    return NULL;
+}
+
+/* \brief Sets a callback that activates when the window size changes
+ */
+GLFWwindowsizefun GLWindow::SetWindowSizeCallback(GLFWwindowsizefun callback)
+{
+    return NULL;
+}
+
+/* \brief Sets a callback that activates when the window closes. Callback activates right after the close flag is set.
+ */
+GLFWwindowclosefun GLWindow::SetWindowCloseCallback(GLFWwindowclosefun callback)
+{
+    return NULL;
+}
+
+/* \brief Sets a callback that activates when the window needs to be refreshed
+ */
+GLFWwindowrefreshfun GLWindow::SetWindowRefreshCallback(GLFWwindowrefreshfun callback)
+{
+    return NULL;
+}
+
+/* \brief Sets a callback that activates when the window gains/loses focus
+ */
+GLFWwindowfocusfun GLWindow::SetWindowFocusCallback(GLFWwindowfocusfun callback)
+{
+    return NULL;
+}
+
+/* \brief Sets a callback that activates when the window is iconified (minimized?)
+ */
+GLFWwindowiconifyfun GLWindow::SetWindowIconifyCallback(GLFWwindowiconifyfun callback)
+{
+    return NULL;
+}
+
+/* \brief Sets a callback that activates when the window is maximized
+ */
+GLFWwindowmaximizefun GLWindow::SetWindowMaximizeCallback(GLFWwindowmaximizefun callback)
+{
+    return NULL;
+}
+
+/* \brief Sets a callback that activates when the framebuffer size changes
+ */
+GLFWframebuffersizefun GLWindow::SetFramebufferSizeCallback(GLFWframebuffersizefun callback)
+{
+    return NULL;
+}
+
+/* \brief Sets a callback that activates when the content scale (ratio of current DPI to the platform's default DPI) changes
+ */
+GLFWwindowcontentscalefun GLWindow::SetWindowContentScaleCallback(GLFWwindowcontentscalefun callback)
+{
+    return NULL;
+}
+
+/* \brief Sets a callback that activates when a monitor is connected/disconnected
+ */
+GLFWmonitorfun GLWindow::SetMonitorCallback(GLFWmonitorfun callback)
+{
+    return NULL;
 }
 
 void GLWindow::SetMajor(unsigned int major)

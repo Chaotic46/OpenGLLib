@@ -2,6 +2,7 @@
 
 #include "../OpenGLLib/GLWindow.h"
 
+// Empty callback methods for input callbacks
 void KeyCallbackTest(GLFWwindow* window, int key, int scancode, int action, int mods) {}
 void CharCallbackTest(GLFWwindow* window, unsigned int codepoint)                     {}
 void CharModsCallbackTest(GLFWwindow* window, unsigned int codepoint, int mods)       {}
@@ -11,6 +12,20 @@ void MouseButtonCallbackTest(GLFWwindow* window, int button, int action, int mod
 void ScrollCallbackTest(GLFWwindow* window, double xoffset, double yoffset)           {}
 void JoystickCallbackTest(int jid, int event)                                         {}
 void DropCallbackTest(GLFWwindow* window, int path_count, const char* paths[])        {}
+
+// Empty callback methods for window callbacks
+void WindowPosCallbackTest(GLFWwindow* window, int xpos, int ypos)                  {}
+void WindowSizeCallbackTest(GLFWwindow* window, int width, int height)              {}
+void WindowCloseCallbackTest(GLFWwindow* window)                                    {}
+void WindowRefreshCallbackTest(GLFWwindow* window)                                  {}
+void WindowFocusCallbackTest(GLFWwindow* window, int focused)                       {}
+void WindowIconifyCallbackTest(GLFWwindow* window, int iconified)                   {}
+void WindowMaximizeCallbackTest(GLFWwindow* window, int maximized)                  {}
+void FramebufferSizeCallbackTest(GLFWwindow* window, int width, int height)         {}
+void WindowContentScaleCallbackTest(GLFWwindow* window, float xscale, float yscale) {}
+
+// Empty callback methods for monitor callbacks
+void MonitorCallbackTest(GLFWmonitor* monitor, int event) {}
 
 TEST(OpenGLRGBATest, GLRGBATest)
 {
@@ -76,7 +91,7 @@ TEST(OpenGLWindowTests, GLBackgroundColourTest)
 	EXPECT_EQ(window1.GetBackgroundColour(), backgroundColour);
 }
 
-TEST(OpenGLWindowTests, GLCallbackTest)
+TEST(OpenGLWindowTests, GLInputCallbackTest)
 {
 	GLWindow window(GLSize(200, 200), " ");
 
@@ -106,4 +121,44 @@ TEST(OpenGLWindowTests, GLCallbackTest)
 
 	EXPECT_TRUE(window.SetDropCallback(DropCallbackTest) == NULL);
 	EXPECT_TRUE(window.SetDropCallback(NULL) == DropCallbackTest);
+}
+
+TEST(OpenGLWindowTests, GLWindowCallbackTest)
+{
+	GLWindow window(GLSize(200, 200), " ");
+	
+	EXPECT_TRUE(window.SetWindowPosCallback(WindowPosCallbackTest) == NULL);
+	EXPECT_TRUE(window.SetWindowPosCallback(NULL) == WindowPosCallbackTest);
+
+	EXPECT_TRUE(window.SetWindowSizeCallback(WindowSizeCallbackTest) == NULL);
+	EXPECT_TRUE(window.SetWindowSizeCallback(NULL) == WindowSizeCallbackTest);
+
+	EXPECT_TRUE(window.SetWindowCloseCallback(WindowCloseCallbackTest) == NULL);
+	EXPECT_TRUE(window.SetWindowCloseCallback(NULL) == WindowCloseCallbackTest);
+
+	EXPECT_TRUE(window.SetWindowRefreshCallback(WindowRefreshCallbackTest) == NULL);
+	EXPECT_TRUE(window.SetWindowRefreshCallback(NULL) == WindowRefreshCallbackTest);
+
+	EXPECT_TRUE(window.SetWindowFocusCallback(WindowFocusCallbackTest) == NULL);
+	EXPECT_TRUE(window.SetWindowFocusCallback(NULL) == WindowFocusCallbackTest);
+
+	EXPECT_TRUE(window.SetWindowIconifyCallback(WindowIconifyCallbackTest) == NULL);
+	EXPECT_TRUE(window.SetWindowIconifyCallback(NULL) == WindowIconifyCallbackTest);
+
+	EXPECT_TRUE(window.SetWindowMaximizeCallback(WindowMaximizeCallbackTest) == NULL);
+	EXPECT_TRUE(window.SetWindowMaximizeCallback(NULL) == WindowMaximizeCallbackTest);
+
+	EXPECT_TRUE(window.SetFramebufferSizeCallback(FramebufferSizeCallbackTest) == NULL);
+	EXPECT_TRUE(window.SetFramebufferSizeCallback(NULL) == FramebufferSizeCallbackTest);
+
+	EXPECT_TRUE(window.SetWindowContentScaleCallback(WindowContentScaleCallbackTest) == NULL);
+	EXPECT_TRUE(window.SetWindowContentScaleCallback(NULL) == WindowContentScaleCallbackTest);
+}
+
+TEST(OpenGLWindowTests, GLMonitorCallbackTest)
+{
+	GLWindow window(GLSize(200, 200), " ");
+
+	EXPECT_TRUE(window.SetMonitorCallback(MonitorCallbackTest) == NULL);
+	EXPECT_TRUE(window.SetMonitorCallback(NULL) == MonitorCallbackTest);
 }
