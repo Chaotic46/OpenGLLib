@@ -47,10 +47,11 @@ TEST(OpenGLRGBATest, GLRGBATest)
 	EXPECT_EQ(rgba.GetA(), 1.0f);
 }
 
-TEST(OpenGLWindowTests, GLWindowSizeTest)
+TEST(OpenGLWindowTests, GLWindowCreationTest)
 {
 	GLWindow window1;
 	GLWindow window2(GLSize(200, 200), "Window2 Title");
+	GLWindow window3(GLSize(200, 200), "Window2 Title");
 
 	EXPECT_EQ(window1.GetSize(),  GLSize(0, 0));
 	EXPECT_EQ(window1.GetTitle(), std::string());

@@ -34,7 +34,6 @@ GLWindow::~GLWindow()
     }
 }
 
-
 GLSize GLWindow::GetSize() const
 {
     if (!_window)
