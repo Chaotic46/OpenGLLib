@@ -12,5 +12,6 @@ GLEngine::~GLEngine()
 
 GLEngine* GLEngine::GetInstance()
 {
-	return 0;
+	static GLEngine engine;
+	return &engine;
 }

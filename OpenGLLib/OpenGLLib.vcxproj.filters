@@ -13,7 +13,7 @@
       <Filter>Windows</Filter>
     </ClCompile>
     <ClCompile Include="..\thirdparty\include\glad\src\glad.c" />
-    <ClCompile Include="..\..\OpenGLLib-main\OpenGLLib\GLEngine.cpp">
+    <ClCompile Include="GLEngine.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
   </ItemGroup>
@@ -22,7 +22,7 @@
       <Filter>Windows</Filter>
     </ClInclude>
     <ClInclude Include="GLCommon.h" />
-    <ClInclude Include="..\..\OpenGLLib-main\OpenGLLib\GLEngine.h">
+    <ClInclude Include="GLEngine.h">
       <Filter>Engine</Filter>
     </ClInclude>
   </ItemGroup>

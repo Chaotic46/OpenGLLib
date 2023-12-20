@@ -15,7 +15,7 @@
     <ClCompile Include="test.cpp">
       <Filter>GLWindowTests</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\OpenGLLib-main\OpenGLTest\GLEngineTests.cpp">
+    <ClCompile Include="GLEngineTests.cpp">
       <Filter>GLEngineTests</Filter>
     </ClCompile>
   </ItemGroup>
