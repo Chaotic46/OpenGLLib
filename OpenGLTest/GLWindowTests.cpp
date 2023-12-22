@@ -71,7 +71,7 @@ TEST(OpenGLWindowTests, GLWindowCreationTest)
 	EXPECT_EQ(window2.GetSize(), GLSize(100, 100));
 	EXPECT_EQ(window2.GetTitle(), std::string("Title"));
 
-	window1.Create(GLSize(300, 300), "Title for window1");
+	EXPECT_TRUE(window1.Create(GLSize(300, 300), "Title for window1"));
 
 	EXPECT_EQ(window1.GetSize(), GLSize(300, 300));
 	EXPECT_EQ(window1.GetTitle(), std::string("Title for window1"));

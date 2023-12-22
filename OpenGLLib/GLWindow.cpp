@@ -7,9 +7,20 @@ GLWindow::GLWindow() : _window(NULL),
 
 }
 
-GLWindow::GLWindow(GLSize size, std::string title, unsigned int major, unsigned int minor) : _window(NULL),
-                                                                                             _title(title),
-                                                                                             _initialized(true)
+GLWindow::GLWindow(GLSize size, std::string title, unsigned int major, unsigned int minor) : _window(NULL)
+{
+    Create(size, title, major, minor);
+}
+
+GLWindow::~GLWindow()
+{
+    if (_window)
+    {
+        glfwDestroyWindow(_window);
+    }
+}
+
+bool GLWindow::Create(GLSize size, std::string title, unsigned int major, unsigned int minor)
 {
     glfwInit();
 
@@ -23,22 +34,18 @@ GLWindow::GLWindow(GLSize size, std::string title, unsigned int major, unsigned 
 
     _window = glfwCreateWindow(size.first, size.second, title.c_str(), NULL, NULL);
 
-    glfwMakeContextCurrent(_window);
-
-    gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
-}
-
-GLWindow::~GLWindow()
-{
-    if (_window)
+    if (!_window)
     {
-        glfwDestroyWindow(_window);
+        _initialized = false;
+        return false;
     }
-}
 
-bool GLWindow::Create(GLSize size, std::string title, unsigned int major, unsigned int minor)
-{
-    return false;
+    _title = title;
+    _initialized = true;
+    glfwMakeContextCurrent(_window);
+    gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+
+    return true;
 }
 
 bool GLWindow::IsInitialized()
