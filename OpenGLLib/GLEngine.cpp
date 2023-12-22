@@ -143,7 +143,7 @@ void GLEngine::EngineRenderingThread::RenderThread(EngineRenderingThread* render
 
 			window->ClearBackground();
 
-			glfwPollEvents();
+			//glfwPollEvents();
 
 			window->SwapBuffers();
 		}

@@ -12,11 +12,11 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="test.cpp">
-      <Filter>GLWindowTests</Filter>
-    </ClCompile>
     <ClCompile Include="GLEngineTests.cpp">
       <Filter>GLEngineTests</Filter>
+    </ClCompile>
+    <ClCompile Include="GLWindowTests.cpp">
+      <Filter>GLWindowTests</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
