@@ -36,6 +36,11 @@ GLWindow::~GLWindow()
     }
 }
 
+bool GLWindow::Create(GLSize size, std::string title, unsigned int major, unsigned int minor)
+{
+    return false;
+}
+
 bool GLWindow::IsInitialized()
 {
     return _initialized;

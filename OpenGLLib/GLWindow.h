@@ -14,6 +14,8 @@ public:
 	GLWindow(GLSize size, std::string title, unsigned int major = 3, unsigned int minor = 3);
 	~GLWindow();
 
+	bool Create(GLSize size, std::string title, unsigned int major = 3, unsigned int minor = 3);
+
 	bool IsInitialized();
 
 	GLSize       GetSize()             const;
