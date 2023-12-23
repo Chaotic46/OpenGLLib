@@ -34,6 +34,7 @@
   <PropertyGroup Label="UserMacros" />
   <ItemGroup>
     <ClCompile Include="GLEngineTests.cpp" />
+    <ClCompile Include="GLShaderTests.cpp" />
     <ClCompile Include="GLWindowTests.cpp" />
   </ItemGroup>
   <ItemGroup>

@@ -10,6 +10,9 @@
     <Filter Include="GLEngineTests">
       <UniqueIdentifier>{71cf649f-72b0-487c-a5d9-ff56257b798e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GLShaderTests">
+      <UniqueIdentifier>{babd5ae6-8142-4ae0-8e25-6fa525849cd7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GLEngineTests.cpp">
@@ -17,6 +20,9 @@
     </ClCompile>
     <ClCompile Include="GLWindowTests.cpp">
       <Filter>GLWindowTests</Filter>
+    </ClCompile>
+    <ClCompile Include="GLShaderTests.cpp">
+      <Filter>GLShaderTests</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

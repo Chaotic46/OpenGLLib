@@ -135,11 +135,13 @@
   <ItemGroup>
     <ClInclude Include="GLCommon.h" />
     <ClInclude Include="GLEngine.h" />
+    <ClInclude Include="GLShader.h" />
     <ClInclude Include="GLWindow.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\thirdparty\include\glad\src\glad.c" />
     <ClCompile Include="GLEngine.cpp" />
+    <ClCompile Include="GLShader.cpp" />
     <ClCompile Include="GLWindow.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
