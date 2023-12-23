@@ -53,3 +53,20 @@ TEST(OpenGLShaderTest, GLShaderTest)
 
 	EXPECT_TRUE(shaderProgram.LinkProgram());
 }
+
+TEST(OpenGLShaderTest, GLUseShaderProgramTest)
+{
+	GLShader shaderProgram;
+
+	// We haven't linked our shader program, thus it hasn't been created
+	shaderProgram.UseProgram();
+	EXPECT_FALSE(shaderProgram.IsProgramUsed());
+
+	// Link our shader program so it can be used.
+	EXPECT_TRUE(shaderProgram.CreateVertex(vertexShader));
+	EXPECT_TRUE(shaderProgram.CreateFragment(fragmentShader));
+	EXPECT_TRUE(shaderProgram.LinkProgram());
+
+	shaderProgram.UseProgram();
+	EXPECT_TRUE(shaderProgram.IsProgramUsed());
+}

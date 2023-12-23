@@ -99,6 +99,16 @@ bool GLShader::LinkProgram()
 	return success;
 }
 
+void GLShader::UseProgram()
+{
+	
+}
+
+bool GLShader::IsProgramUsed()
+{
+	return false;
+}
+
 /* \brief Creates a new shader. This will preemptively detach the shader if it is already attached to a shader program.
  */
 bool GLShader::CreateShader(unsigned int& shaderID, GLenum shaderType, const char* shaderProgram)

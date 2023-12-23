@@ -14,6 +14,9 @@ public:
 	bool CreateGeometry(const char* geometry);
 	bool LinkProgram();
 
+	void UseProgram();
+	bool IsProgramUsed();
+
 private:
 	bool CreateShader(unsigned int& shaderID, GLenum shaderType, const char* shaderProgram);
 	void DetachShader(unsigned int shaderID);
