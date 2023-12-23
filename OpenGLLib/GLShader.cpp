@@ -99,14 +99,31 @@ bool GLShader::LinkProgram()
 	return success;
 }
 
+/* \brief Uses the current program in GLShader.
+ */
 void GLShader::UseProgram()
 {
-	
+	glUseProgram(_program);
 }
 
+/* \brief Checks if GLShader's program is in use.
+ */
 bool GLShader::IsProgramUsed()
 {
-	return false;
+	int program = 0;
+
+	glGetIntegerv(GL_CURRENT_PROGRAM, &program);
+
+	if (program == 0)
+	{
+		return false;
+	}
+	else if (_program != program)
+	{
+		return false;
+	}
+
+	return true;
 }
 
 /* \brief Creates a new shader. This will preemptively detach the shader if it is already attached to a shader program.
