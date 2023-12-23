@@ -43,6 +43,13 @@ bool GLShader::CreateFragment(const char* shader)
 	return CreateShader(_fragment, GL_FRAGMENT_SHADER, shader);
 }
 
+/* \brief Creates a new geometry shader. This will preemptively detach the fragment shader from an existing shader program.
+ */
+bool GLShader::CreateGeometry(const char* shader)
+{
+	return false;
+}
+
 /* \brief Creates a new shader program if one does not exists and links the created shaders.
  */
 bool GLShader::LinkProgram()

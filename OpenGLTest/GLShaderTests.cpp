@@ -24,12 +24,32 @@ const char* fragmentShader =
 "	FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
 "}\n";
 
+// Geometry shader obtained from learnopengl.com
+const char* geometryShader =
+"#version 330 core\n"
+"layout(points) in;\n"
+"layout(line_strip, max_vertices = 2) out;\n"
+"\n"
+"void main() {\n"
+"    gl_Position = gl_in[0].gl_Position + vec4(-0.1, 0.0, 0.0, 0.0);\n"
+"    EmitVertex();\n"
+"\n"
+"    gl_Position = gl_in[0].gl_Position + vec4(0.1, 0.0, 0.0, 0.0);\n"
+"    EmitVertex();\n"
+"\n"
+"    EndPrimitive();\n"
+"}\n";
+
 TEST(OpenGLShaderTest, GLShaderTest)
 {
 	GLShader shaderProgram;
 
 	ASSERT_TRUE(shaderProgram.CreateVertex(vertexShader));
 	ASSERT_TRUE(shaderProgram.CreateFragment(fragmentShader));
+
+	EXPECT_TRUE(shaderProgram.LinkProgram());
+
+	ASSERT_TRUE(shaderProgram.CreateGeometry(geometryShader));
 
 	EXPECT_TRUE(shaderProgram.LinkProgram());
 }

@@ -11,6 +11,7 @@ public:
 
 	bool CreateVertex(const char * shader);
 	bool CreateFragment(const char* shader);
+	bool CreateGeometry(const char* geometry);
 	bool LinkProgram();
 
 private:
