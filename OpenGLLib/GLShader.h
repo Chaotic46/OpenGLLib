@@ -21,6 +21,7 @@ private:
 
 	unsigned int _vertex;
 	unsigned int _fragment;
+	unsigned int _geometry;
 	unsigned int _program;
 };
 

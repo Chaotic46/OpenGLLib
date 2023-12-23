@@ -4,6 +4,7 @@
 
 GLShader::GLShader() : _vertex(0),
                        _fragment(0),
+                       _geometry(0),
                        _program(0)
 {
 
@@ -47,7 +48,7 @@ bool GLShader::CreateFragment(const char* shader)
  */
 bool GLShader::CreateGeometry(const char* shader)
 {
-	return false;
+	return CreateShader(_geometry, GL_GEOMETRY_SHADER, shader);
 }
 
 /* \brief Creates a new shader program if one does not exists and links the created shaders.
@@ -61,6 +62,7 @@ bool GLShader::LinkProgram()
 		_program = glCreateProgram();
 	}
 
+	// Did the user create a vertex shader? (required)
 	if (!_vertex)
 	{
 		return false;
@@ -70,6 +72,7 @@ bool GLShader::LinkProgram()
 		DetachShader(_vertex);
 	}
 
+	// Did the user create a fragment shader? (required)
 	if (!_fragment)
 	{
 		return false;
@@ -77,6 +80,13 @@ bool GLShader::LinkProgram()
 	else
 	{
 		DetachShader(_fragment);
+	}
+
+	// Did the user create a fragment shader? (optional)
+	if (_geometry)
+	{
+		DetachShader(_geometry);
+		glAttachShader(_program, _geometry);
 	}
 
 	glAttachShader(_program, _vertex);
