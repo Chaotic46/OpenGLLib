@@ -2,6 +2,7 @@
 #define OPENGLENGINE_H_
 
 #include "GLWindow.h"
+#include "GLCommon.h"
 
 #include <vector>
 #include <thread>

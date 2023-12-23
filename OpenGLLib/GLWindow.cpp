@@ -1,4 +1,5 @@
 #include "glad/glad.h"
+
 #include "GLWindow.h"
 
 GLWindow::GLWindow() : _window(NULL),

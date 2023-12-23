@@ -28,8 +28,8 @@ TEST(OpenGLShaderTest, GLShaderTest)
 {
 	GLShader shaderProgram;
 
-	ASSERT_TRUE(shaderProgram.AttachVertex(vertexShader));
-	ASSERT_TRUE(shaderProgram.AttachFragment(fragmentShader));
+	ASSERT_TRUE(shaderProgram.CreateVertex(vertexShader));
+	ASSERT_TRUE(shaderProgram.CreateFragment(fragmentShader));
 
 	EXPECT_TRUE(shaderProgram.LinkProgram());
 }

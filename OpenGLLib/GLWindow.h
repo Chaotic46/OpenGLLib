@@ -5,8 +5,6 @@
 
 #include "GLCommon.h"
 
-#include "GLFW/glfw3.h"
-
 class GLWindow
 {
 public:

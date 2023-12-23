@@ -3,6 +3,8 @@
 
 #include <utility>
 
+#include "GLFW/glfw3.h"
+
 typedef std::pair<int, int> GLSize;
 
 struct GLRGBA

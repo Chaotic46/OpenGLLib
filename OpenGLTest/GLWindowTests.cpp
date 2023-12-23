@@ -1,5 +1,6 @@
 #include "gtest/gtest.h"
 
+
 #include "../OpenGLLib/GLWindow.h"
 
 // Empty callback methods for input callbacks
