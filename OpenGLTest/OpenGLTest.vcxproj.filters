@@ -13,6 +13,9 @@
     <Filter Include="GLShaderTests">
       <UniqueIdentifier>{babd5ae6-8142-4ae0-8e25-6fa525849cd7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GLBufferTests">
+      <UniqueIdentifier>{766b8fe5-3769-4412-8b99-a5e9ac46ec0b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GLEngineTests.cpp">
@@ -23,6 +26,9 @@
     </ClCompile>
     <ClCompile Include="GLShaderTests.cpp">
       <Filter>GLShaderTests</Filter>
+    </ClCompile>
+    <ClCompile Include="GLBufferTests.cpp">
+      <Filter>GLBufferTests</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

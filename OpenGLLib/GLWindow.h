@@ -3,6 +3,7 @@
 
 #include <string>
 
+
 #include "GLCommon.h"
 
 class GLWindow

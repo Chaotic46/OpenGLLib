@@ -1,5 +1,3 @@
-#include "glad/glad.h"
-
 #include "GLShader.h"
 
 GLShader::GLShader() : _vertex(0),

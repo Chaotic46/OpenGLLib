@@ -133,6 +133,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="GLBuffer.h" />
     <ClInclude Include="GLCommon.h" />
     <ClInclude Include="GLEngine.h" />
     <ClInclude Include="GLShader.h" />
@@ -140,6 +141,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\thirdparty\include\glad\src\glad.c" />
+    <ClCompile Include="GLBuffer.cpp" />
     <ClCompile Include="GLEngine.cpp" />
     <ClCompile Include="GLShader.cpp" />
     <ClCompile Include="GLWindow.cpp" />

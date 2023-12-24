@@ -1,5 +1,3 @@
-#include "glad/glad.h"
-
 #include "GLEngine.h"
 
 using namespace std::chrono_literals;
