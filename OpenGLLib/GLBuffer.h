@@ -1,6 +1,8 @@
 #ifndef GLBUFFER_H_
 #define GLBUFFER_H_
 
+#include <vector>
+
 #include "GLCommon.h"
 
 class GLBuffer
@@ -20,7 +22,14 @@ public:
 	void ModifyAttribPointer(unsigned int index, unsigned int numComponents, GLenum valueType, GLboolean normalized, unsigned int strideSize, unsigned int componentOffset);
 
 private:
+	struct BufferInfo
+	{
+		unsigned int _bufferObject;
+		GLenum       _bufferType;
+	};
 
+	std::vector<BufferInfo> _bufferVector;
+	unsigned int _arrayObject;
 };
 
 #endif
