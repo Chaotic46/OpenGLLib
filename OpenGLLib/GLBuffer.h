@@ -18,8 +18,7 @@ public:
 	bool IsBufferBound(unsigned int index);
 
 	void AddBuffer(GLenum bufferType);
-	void AddBuffer(GLenum bufferType, unsigned int numComponents, GLenum valueType, GLboolean normalized, unsigned int strideSize, unsigned int componentOffset);
-	void ModifyAttribPointer(unsigned int index, unsigned int numComponents, GLenum valueType, GLboolean normalized, unsigned int strideSize, unsigned int componentOffset);
+	void ModifyAttribPointer(unsigned int bufferIndex, unsigned int shaderAttributeIndex, unsigned int numComponents, GLenum valueType, GLboolean normalized, unsigned int strideSize, unsigned int componentOffset);
 
 private:
 	struct BufferInfo

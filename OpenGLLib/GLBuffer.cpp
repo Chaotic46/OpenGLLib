@@ -59,21 +59,14 @@ void GLBuffer::AddBuffer(GLenum bufferType)
 	_bufferVector.push_back(info);
 }
 
-void GLBuffer::AddBuffer(GLenum bufferType, unsigned int numComponents, GLenum valueType, GLboolean normalized, unsigned int strideSize, unsigned int componentOffset)
-{
-	AddBuffer(bufferType);
-
-	ModifyAttribPointer(_bufferVector.size() - 1, numComponents, valueType, normalized, strideSize, componentOffset);
-}
-
-void GLBuffer::ModifyAttribPointer(unsigned int index, unsigned int numComponents, GLenum valueType, GLboolean normalized, unsigned int strideSize, unsigned int componentOffset)
+void GLBuffer::ModifyAttribPointer(unsigned int bufferIndex, unsigned int shaderAttributeIndex, unsigned int numComponents, GLenum valueType, GLboolean normalized, unsigned int strideSize, unsigned int componentOffset)
 {
 	BindVertexArray();
 
-	BindBuffer(index);
+	//BindBuffer(index);
 
-	glVertexAttribPointer(index, numComponents, valueType, normalized, strideSize, (void*)componentOffset);
-
-	glEnableVertexAttribArray(index);
+	//glVertexAttribPointer(index, numComponents, valueType, normalized, strideSize, (void*)componentOffset);
+	//
+	//glEnableVertexAttribArray(index);
 }
 
