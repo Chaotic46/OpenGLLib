@@ -2,7 +2,7 @@
 x64/*
 OpenGLLib/x64/*
 OpenGLTest/x64/*
-OpenGLSamples/x64/*
+OpenGLLibSamples/x64/*
 
 # Ignore extra visual studio files
 .vs
