@@ -63,19 +63,19 @@ void GLBuffer::AddAttribPointer(unsigned int bufferIndex, unsigned int attribute
 {
 	BindVertexArray();
 
-	//BindBuffer(index);
+	BindBuffer(bufferIndex);
 
-	//glVertexAttribPointer(index, numComponents, valueType, normalized, strideSize, (void*)componentOffset);
-	//
-	//glEnableVertexAttribArray(index);
+	glVertexAttribPointer(attributeIndex, numComponents, valueType, normalized, strideSize, (void*)componentOffset);
 }
 
 void GLBuffer::EnableAttribPointer(unsigned int bufferIndex, unsigned int attributeIndex, bool activate)
 {
-	
+	BindVertexArray();
+	BindBuffer(bufferIndex);
+	activate ? glEnableVertexAttribArray(attributeIndex) : glDisableVertexAttribArray(attributeIndex);
 }
 
 unsigned int GLBuffer::GetBuffer(unsigned int index) const
 {
-	return ((unsigned int)-1); // For the current implementation, return the max possible unsigned integer value;
+	return _bufferVector[index]._bufferObject; // For the current implementation, return the max possible unsigned integer value;
 }
