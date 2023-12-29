@@ -59,7 +59,7 @@ void GLBuffer::AddBuffer(GLenum bufferType)
 	_bufferVector.push_back(info);
 }
 
-void GLBuffer::ModifyAttribPointer(unsigned int bufferIndex, unsigned int shaderAttributeIndex, unsigned int numComponents, GLenum valueType, GLboolean normalized, unsigned int strideSize, unsigned int componentOffset)
+void GLBuffer::AddAttribPointer(unsigned int bufferIndex, unsigned int attributeIndex, unsigned int numComponents, GLenum valueType, GLboolean normalized, unsigned int strideSize, unsigned int componentOffset)
 {
 	BindVertexArray();
 
@@ -70,3 +70,12 @@ void GLBuffer::ModifyAttribPointer(unsigned int bufferIndex, unsigned int shader
 	//glEnableVertexAttribArray(index);
 }
 
+void GLBuffer::EnableAttribPointer(unsigned int bufferIndex, unsigned int attributeIndex, bool activate)
+{
+	
+}
+
+unsigned int GLBuffer::GetBuffer(unsigned int index) const
+{
+	return ((unsigned int)-1); // For the current implementation, return the max possible unsigned integer value;
+}
