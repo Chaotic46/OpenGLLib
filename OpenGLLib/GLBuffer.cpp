@@ -62,9 +62,7 @@ void GLBuffer::AddBuffer(GLenum bufferType)
 void GLBuffer::AddAttribPointer(unsigned int bufferIndex, unsigned int attributeIndex, unsigned int numComponents, GLenum valueType, GLboolean normalized, unsigned int strideSize, unsigned int componentOffset)
 {
 	BindVertexArray();
-
 	BindBuffer(bufferIndex);
-
 	glVertexAttribPointer(attributeIndex, numComponents, valueType, normalized, strideSize, (void*)componentOffset);
 }
 
@@ -82,5 +80,7 @@ unsigned int GLBuffer::GetBuffer(unsigned int index) const
 
 void GLBuffer::SetBufferData(unsigned int bufferIndex, void* data, unsigned int dataSize, GLenum drawType)
 {
-	
+	BindVertexArray();
+	BindBuffer(bufferIndex);
+	glBufferData(GL_ARRAY_BUFFER, dataSize, data, drawType);
 }
