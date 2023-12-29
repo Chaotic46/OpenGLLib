@@ -24,6 +24,8 @@ public:
 
 	unsigned int GetBuffer(unsigned int index) const;
 
+	void SetBufferData(unsigned int bufferIndex, void * data, unsigned int dataSize, GLenum drawType);
+
 private:
 	struct BufferInfo
 	{

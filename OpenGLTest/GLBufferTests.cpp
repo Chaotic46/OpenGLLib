@@ -65,3 +65,38 @@ TEST(OpenGLBufferTests, GLAttributePointerTest)
 	EXPECT_EQ(vertexType, GL_FLOAT);
 	EXPECT_EQ(normalized, false);
 }
+
+TEST(OpenGLBufferTests, GLBufferDataTest)
+{
+	GLWindow window(GLSize(100, 100), "title");
+	GLBuffer buffer;
+	float data[6] =
+	{
+		-0.5f, -0.5f,
+		 0.0f,  0.5f,
+		 0.5f, -0.5f,
+	};
+
+	int   bufferSize  = 0;
+	int   bufferUsage = 0;
+	float bufferData[6];
+
+	buffer.BindVertexArray();
+	buffer.AddBuffer(GL_ARRAY_BUFFER);
+	buffer.AddAttribPointer(0, 0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), 0);
+	buffer.SetBufferData(0, data, sizeof(data), GL_STATIC_DRAW);
+	buffer.EnableAttribPointer(0, 0);
+
+	glGetBufferParameteriv(GL_ARRAY_BUFFER, GL_BUFFER_SIZE, &bufferSize);
+	glGetBufferParameteriv(GL_ARRAY_BUFFER, GL_BUFFER_USAGE, &bufferUsage);
+
+	EXPECT_EQ(bufferUsage, GL_STATIC_DRAW);
+	ASSERT_EQ(bufferSize, 6 * sizeof(float));
+
+	glGetBufferSubData(GL_ARRAY_BUFFER, 0, bufferSize, bufferData);
+
+	for (unsigned int i = 0; i < 6; i++)
+	{
+		EXPECT_EQ(data[i], bufferData[i]);
+	}
+}

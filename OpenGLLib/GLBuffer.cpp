@@ -79,3 +79,8 @@ unsigned int GLBuffer::GetBuffer(unsigned int index) const
 {
 	return _bufferVector[index]._bufferObject; // For the current implementation, return the max possible unsigned integer value;
 }
+
+void GLBuffer::SetBufferData(unsigned int bufferIndex, void* data, unsigned int dataSize, GLenum drawType)
+{
+	
+}
