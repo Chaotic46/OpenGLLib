@@ -88,6 +88,11 @@ GLRGBA GLWindow::GetBackgroundColour() const
     return _backgroundColour;
 }
 
+GLShader* GLWindow::GetAttachedShader() const
+{
+    return NULL;
+}
+
 void GLWindow::SetCurrentContext()
 {
     if (_window)
@@ -122,6 +127,11 @@ void GLWindow::SetTitle(std::string title)
 void GLWindow::SetBackgroundColour(GLRGBA backgroundColour)
 {
     _backgroundColour = backgroundColour;
+}
+
+void GLWindow::AttachShader(GLShader* shader)
+{
+    
 }
 
 void GLWindow::ClearBackground()

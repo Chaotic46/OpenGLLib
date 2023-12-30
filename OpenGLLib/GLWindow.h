@@ -3,8 +3,8 @@
 
 #include <string>
 
-
 #include "GLCommon.h"
+#include "GLShader.h"
 
 class GLWindow
 {
@@ -22,11 +22,13 @@ public:
 	unsigned int GetGLMajor()          const;
 	unsigned int GetGLMinor()          const;
 	GLRGBA       GetBackgroundColour() const;
+	GLShader   * GetAttachedShader()   const;
 
 	void SetCurrentContext();
 	void SetSize(GLSize size);
 	void SetTitle(std::string title);
 	void SetBackgroundColour(GLRGBA backgroundColour);
+	void AttachShader(GLShader * shader);
 
 	void ClearBackground();
 	void SwapBuffers();
@@ -66,6 +68,7 @@ private:
 	void CheckSize(GLSize size);
 
 	GLFWwindow * _window;
+	GLShader   * _shader;
 	std::string  _title;
 	GLRGBA       _backgroundColour;
 	bool         _initialized;

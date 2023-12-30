@@ -169,3 +169,21 @@ TEST(OpenGLWindowTests, GLMonitorCallbackTest)
 	EXPECT_TRUE(window.SetMonitorCallback(MonitorCallbackTest) == NULL);
 	EXPECT_TRUE(window.SetMonitorCallback(NULL) == MonitorCallbackTest);
 }
+
+TEST(OpenGLWindowTests, GLAttachShaderToWindow)
+{
+	GLWindow window(GLSize(200, 200), " ");
+	GLShader shader1;
+	GLShader shader2;
+
+	EXPECT_EQ(window.GetAttachedShader(), (GLShader*)NULL);
+
+	window.AttachShader(&shader1);
+
+	EXPECT_EQ(window.GetAttachedShader(), &shader1);
+
+	window.AttachShader(&shader2);
+	
+	EXPECT_NE(window.GetAttachedShader(), &shader1);
+	EXPECT_EQ(window.GetAttachedShader(), &shader2);
+}
