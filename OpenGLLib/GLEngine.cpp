@@ -133,17 +133,31 @@ bool GLEngine::EngineRenderingThread::IsThreadRendering()
 
 void GLEngine::EngineRenderingThread::RenderThread(EngineRenderingThread* renderThread)
 {
+	bool startup = true;
+
 	while (renderThread->_renderAgain)
 	{
 		for (unsigned int i = 0; i < renderThread->_engine->_windowVector.size(); i++)
 		{
 			GLWindow * window = renderThread->_engine->_windowVector[i];
-			
+			GLShader * shader = window->GetAttachedShader();
+
 			window->SetCurrentContext();
+
+			// We need to load glad for the rendering thread, so we do it the first time through.
+			if (startup)
+			{
+				startup = false;
+				gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+			}
 
 			window->ClearBackground();
 
-			window->SwapBuffers();
+			if (shader)
+			{
+				shader->UseProgram();
+				glDrawArrays(GL_TRIANGLES, 0, 3);
+			}
 		}
 	}
 }

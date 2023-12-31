@@ -9,21 +9,21 @@
 
 int main()
 {
-	GLWindow triangleWindow(GLSize(400, 300), "OpenGLLib Triangle");
-	GLShader shader;
+	GLWindow triangleWindow(GLSize(1080, 920), "OpenGLLib Triangle");
+	GLShader * shader = new GLShader;
+	GLEngine * engine = GLEngine::GetInstance();
 	GLBuffer buffer;
-	GLEngine* engine = GLEngine::GetInstance();
 
 	float bufferData[] = {
 		// position   // color
-		-0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
+		-0.5f, -0.5f, 1.0f, 0.0f, 0.0f,
 		 0.0f,  0.5f, 0.0f, 1.0f, 0.0f,
-		 0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
+		 0.5f, -0.5f, 0.0f, 0.0f, 1.0f,
 	};
 
-	shader.CreateVertex(vertexShader);
-	shader.CreateFragment(fragmentShader);
-	shader.LinkProgram();
+	shader->CreateVertex(vertexShader);
+	shader->CreateFragment(fragmentShader);
+	shader->LinkProgram();
 
 	buffer.AddBuffer(GL_ARRAY_BUFFER);
 	buffer.AddAttribPointer(0, 0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), 0);
@@ -32,14 +32,18 @@ int main()
 	buffer.EnableAttribPointer(0, 1);
 	buffer.SetBufferData(0, bufferData, sizeof(bufferData), GL_STATIC_DRAW);
 
+	triangleWindow.AttachShader(shader);
+
+	// Detach any contexts as it will need to used in the GLEngine thread.
+	glfwMakeContextCurrent(NULL);
+
 	engine->PushGLWindow(&triangleWindow);
 	engine->StartThread();
 
 	while (1)
 	{
-		shader.UseProgram();
 		buffer.BindVertexArray();
-		glDrawArrays(GL_TRIANGLES, 0, 3);
+		triangleWindow.SwapBuffers();
 		glfwPollEvents();
 	}
 

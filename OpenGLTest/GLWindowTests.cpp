@@ -173,17 +173,17 @@ TEST(OpenGLWindowTests, GLMonitorCallbackTest)
 TEST(OpenGLWindowTests, GLAttachShaderToWindow)
 {
 	GLWindow window(GLSize(200, 200), " ");
-	GLShader shader1;
-	GLShader shader2;
+	GLShader * shader1 = new GLShader;
+	GLShader * shader2 = new GLShader;
 
 	EXPECT_EQ(window.GetAttachedShader(), (GLShader*)NULL);
 
-	window.AttachShader(&shader1);
+	window.AttachShader(shader1);
 
-	EXPECT_EQ(window.GetAttachedShader(), &shader1);
+	EXPECT_EQ(window.GetAttachedShader(), shader1);
 
-	window.AttachShader(&shader2);
+	window.AttachShader(shader2);
 	
-	EXPECT_NE(window.GetAttachedShader(), &shader1);
-	EXPECT_EQ(window.GetAttachedShader(), &shader2);
+	EXPECT_NE(window.GetAttachedShader(), shader1);
+	EXPECT_EQ(window.GetAttachedShader(), shader2);
 }

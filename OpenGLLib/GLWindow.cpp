@@ -1,12 +1,14 @@
 #include "GLWindow.h"
 
 GLWindow::GLWindow() : _window(NULL),
+                       _shader(NULL),
                        _initialized(false)
 {
 
 }
 
-GLWindow::GLWindow(GLSize size, std::string title, unsigned int major, unsigned int minor) : _window(NULL)
+GLWindow::GLWindow(GLSize size, std::string title, unsigned int major, unsigned int minor) : _window(NULL),
+                                                                                             _shader(NULL)
 {
     Create(size, title, major, minor);
 }
@@ -16,6 +18,11 @@ GLWindow::~GLWindow()
     if (_window)
     {
         glfwDestroyWindow(_window);
+    }
+
+    if (_shader)
+    {
+        delete _shader;
     }
 }
 
@@ -29,7 +36,7 @@ bool GLWindow::Create(GLSize size, std::string title, unsigned int major, unsign
     SetMajor(major);
     SetMinor(minor);
 
-    glfwWindowHint(GLFW_DECORATED, GLFW_FALSE);
+    //glfwWindowHint(GLFW_DECORATED, GLFW_FALSE);
 
     _window = glfwCreateWindow(size.first, size.second, title.c_str(), NULL, NULL);
 
@@ -90,7 +97,7 @@ GLRGBA GLWindow::GetBackgroundColour() const
 
 GLShader* GLWindow::GetAttachedShader() const
 {
-    return NULL;
+    return _shader;
 }
 
 void GLWindow::SetCurrentContext()
@@ -131,7 +138,7 @@ void GLWindow::SetBackgroundColour(GLRGBA backgroundColour)
 
 void GLWindow::AttachShader(GLShader* shader)
 {
-    
+    _shader = shader;
 }
 
 void GLWindow::ClearBackground()
