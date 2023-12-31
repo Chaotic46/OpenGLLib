@@ -1,5 +1,8 @@
 #include "gtest/gtest.h"
 
+#include "../OpenGLLib/GLWindow.h"
+#include "../OpenGLLib/GLBuffer.h"
+
 #include "../OpenGLLib/GLShader.h"
 
 // Sample shader programs
@@ -69,4 +72,23 @@ TEST(OpenGLShaderTest, GLUseShaderProgramTest)
 
 	shaderProgram.UseProgram();
 	EXPECT_TRUE(shaderProgram.IsProgramUsed());
+}
+
+TEST(OpenGLShaderTest, GLAttachBufferToShader)
+{
+	GLWindow window(GLSize(200, 200), " ");
+	GLShader* shader  = new GLShader;
+	GLBuffer* buffer1 = new GLBuffer;
+	GLBuffer* buffer2 = new GLBuffer;
+
+	EXPECT_EQ(shader->GetAttachedBuffer(), (GLBuffer*)NULL);
+
+	shader->AttachBuffer(buffer1);
+
+	EXPECT_EQ(shader->GetAttachedBuffer(), buffer1);
+
+	shader->AttachBuffer(buffer2);
+
+	EXPECT_NE(shader->GetAttachedBuffer(), buffer1);
+	EXPECT_EQ(shader->GetAttachedBuffer(), buffer2);
 }

@@ -1,6 +1,5 @@
 #include "gtest/gtest.h"
 
-
 #include "../OpenGLLib/GLWindow.h"
 
 // Empty callback methods for input callbacks
@@ -66,10 +65,10 @@ TEST(OpenGLWindowTests, GLWindowCreationTest)
 	EXPECT_EQ(window1.GetSize(), GLSize(0, 0));
 	EXPECT_EQ(window1.GetTitle(), std::string());
 
-	window2.SetSize(GLSize(100, 100));
+	window2.SetSize(GLSize(300, 300));
 	window2.SetTitle("Title");
 
-	EXPECT_EQ(window2.GetSize(), GLSize(100, 100));
+	EXPECT_EQ(window2.GetSize(), GLSize(300, 300));
 	EXPECT_EQ(window2.GetTitle(), std::string("Title"));
 
 	EXPECT_TRUE(window1.Create(GLSize(300, 300), "Title for window1"));

@@ -2,6 +2,7 @@
 #define GLSHADER_H_
 
 #include "GLCommon.h"
+#include "GLBuffer.h"
 
 class GLShader
 {
@@ -16,6 +17,9 @@ public:
 
 	void UseProgram();
 	bool IsProgramUsed();
+	
+	void AttachBuffer(const GLBuffer * buffer);
+	GLBuffer* GetAttachedBuffer() const;
 
 private:
 	bool CreateShader(unsigned int& shaderID, GLenum shaderType, const char* shaderProgram);
@@ -26,6 +30,8 @@ private:
 	unsigned int _fragment;
 	unsigned int _geometry;
 	unsigned int _program;
+
+	GLBuffer * _buffer;
 };
 
 #endif
