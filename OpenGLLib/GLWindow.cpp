@@ -36,8 +36,6 @@ bool GLWindow::Create(GLSize size, std::string title, unsigned int major, unsign
     SetMajor(major);
     SetMinor(minor);
 
-    //glfwWindowHint(GLFW_DECORATED, GLFW_FALSE);
-
     _window = glfwCreateWindow(size.first, size.second, title.c_str(), NULL, NULL);
 
     if (!_window)

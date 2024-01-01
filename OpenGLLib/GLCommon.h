@@ -48,4 +48,19 @@ private:
 	float _a;
 };
 
+/* \brief Enum to represent the glfw hints when creating a window.
+ */
+enum GLHints
+{
+	GL_RESIZABLE     = 0x01,
+	GL_VISIBLE       = 0x02,
+	GL_DECORATED     = 0x04,
+	GL_FOCUSED       = 0x08,
+	GL_AUTO_MINIMIZE = 0x10,
+	GL_FLOATING      = 0x20,
+	GL_MAXIMIZED     = 0x40,
+	GL_FOCUS_ON_SHOW = 0x80,
+
+	GL_DEFAULT       = GL_RESIZABLE | GL_VISIBLE | GL_DECORATED | GL_FOCUSED | GL_FOCUS_ON_SHOW,
+};
 #endif

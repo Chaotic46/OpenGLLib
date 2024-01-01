@@ -240,3 +240,26 @@ TEST(OpenGLWindowTests, GLWindowAttributesTest)
 	EXPECT_FALSE(window.IsWindowFocused());
 	EXPECT_TRUE(window2.IsWindowFocused());
 }
+
+TEST(OpenGLWindowTests, GLWindowHintsTest)
+{
+	GLWindow window(GLSize(200, 200), " ");
+	
+	EXPECT_TRUE(window.IsWindowVisible());
+	EXPECT_TRUE(window.IsWindowResizable());
+	EXPECT_TRUE(window.IsWindowDecorated());
+	EXPECT_TRUE(window.IsWindowFocusedOnShow());
+	EXPECT_TRUE(window.IsWindowFocused());
+	EXPECT_FALSE(window.IsWindowAutoMinimized());
+	EXPECT_FALSE(window.IsWindowMaximized());
+
+	GLWindow window2(GLSize(200, 200), " ", GL_AUTO_MINIMIZE | GL_MAXIMIZED);
+
+	EXPECT_FALSE(window2.IsWindowVisible());
+	EXPECT_FALSE(window2.IsWindowResizable());
+	EXPECT_FALSE(window2.IsWindowDecorated());
+	EXPECT_FALSE(window2.IsWindowFocusedOnShow());
+	EXPECT_FALSE(window2.IsWindowFocused());
+	EXPECT_TRUE(window2.IsWindowAutoMinimized());
+	EXPECT_TRUE(window2.IsWindowMaximized());
+}
