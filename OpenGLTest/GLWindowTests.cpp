@@ -190,10 +190,10 @@ TEST(OpenGLWindowTests, GLAttachShaderToWindowTest)
 TEST(OpenGLWindowTests, GLWindowAttributesTest)
 {
 	GLWindow window(GLSize(200, 200), " ");
+	GLWindow window2(GLSize(200, 200), " ");
 
-	window.Show();
-	window.Focus();
 	window.Maximize();
+	window.Show();
 	window.SetWindowResizable();
 	window.Float();
 	window.SetWindowDecorated();
@@ -209,9 +209,8 @@ TEST(OpenGLWindowTests, GLWindowAttributesTest)
 	EXPECT_TRUE(window.IsWindowAutoMinimized());
 	EXPECT_TRUE(window.IsWindowFocusedOnShow());
 
-	window.Hide();
-	window.Focus(false);
 	window.Maximize(false);
+	window.Hide();
 	window.SetWindowResizable(false);
 	window.Float(false);
 	window.SetWindowDecorated(false);
@@ -234,4 +233,10 @@ TEST(OpenGLWindowTests, GLWindowAttributesTest)
 	window.Minimize(false);
 
 	EXPECT_FALSE(window.IsWindowMinimized());
+
+	window.Show();
+	window2.Show();
+
+	EXPECT_FALSE(window.IsWindowFocused());
+	EXPECT_TRUE(window2.IsWindowFocused());
 }

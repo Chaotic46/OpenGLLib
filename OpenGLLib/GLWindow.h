@@ -50,7 +50,7 @@ public:
 
 	void Show();
 	void Hide();
-	void Focus(bool focus = true);
+	void Focus();
 	void Maximize(bool maximize = true);
 	void Minimize(bool minimize = true);
 	void Float(bool windowFloat = true);

@@ -157,103 +157,97 @@ void GLWindow::SwapBuffers()
 
 bool GLWindow::IsWindowResizable()
 {
-    return false;
+    return _window ? glfwGetWindowAttrib(_window, GLFW_RESIZABLE) : false;
 }
 
 bool GLWindow::IsWindowDecorated()
 {
-    return false;
+    return _window ? glfwGetWindowAttrib(_window, GLFW_DECORATED) : false;
 }
 
 bool GLWindow::IsWindowMaximized()
 {
-    return false;
+    return _window ? glfwGetWindowAttrib(_window, GLFW_MAXIMIZED) : false;
 }
 
 bool GLWindow::IsWindowMinimized()
 {
-    return false;
+    return _window ? glfwGetWindowAttrib(_window, GLFW_ICONIFIED) : false;
 }
 
 bool GLWindow::IsWindowVisible()
 {
-    return false;
+    return _window ? glfwGetWindowAttrib(_window, GLFW_VISIBLE) : false;
 }
 
 bool GLWindow::IsWindowAutoMinimized()
 {
-    return false;
+    return _window ? glfwGetWindowAttrib(_window, GLFW_AUTO_ICONIFY) : false;
 }
 
 bool GLWindow::IsWindowFloating()
 {
-    return false;
+    return _window ? glfwGetWindowAttrib(_window, GLFW_FLOATING) : false;
 }
 
 bool GLWindow::IsWindowFocusedOnShow()
 {
-    return false;
+    return _window ? glfwGetWindowAttrib(_window, GLFW_FOCUS_ON_SHOW) : false;
 }
 
 bool GLWindow::IsWindowFocused()
 {
-    return false;
+    return _window ? glfwGetWindowAttrib(_window, GLFW_FOCUSED) : false;
 }
 
 void GLWindow::SetWindowResizable(bool resizable)
 {
-    
+    _window ? glfwSetWindowAttrib(_window, GLFW_RESIZABLE, resizable) : void();
 }
 
 void GLWindow::SetWindowDecorated(bool decorate)
 {
-    
+    _window ? glfwSetWindowAttrib(_window, GLFW_DECORATED, decorate) : void();
 }
 
 void GLWindow::SetWindowAutoMinimize(bool autoIconify)
 {
-    
+    _window ? glfwSetWindowAttrib(_window, GLFW_AUTO_ICONIFY, autoIconify) : void();
 }
 
 void GLWindow::SetFocusOnShow(bool focus)
 {
-    
+    _window ? glfwSetWindowAttrib(_window, GLFW_FOCUS_ON_SHOW, focus) : void();
 }
 
 void GLWindow::Show()
 {
-    if (_window)
-    {
-        glfwShowWindow(_window);
-    }
+    _window ? glfwShowWindow(_window) : void();
 }
 
 void GLWindow::Hide()
 {
-    if (_window)
-    {
-        glfwHideWindow(_window);
-    }
+    _window ? glfwHideWindow(_window) : void();
 }
 
-void GLWindow::Focus(bool focus)
+void GLWindow::Focus()
 {
-    
+    _window ? glfwFocusWindow(_window) : void();
 }
 
 void GLWindow::Maximize(bool maximize)
 {
-    
+    _window ? (maximize ? glfwMaximizeWindow(_window) : glfwRestoreWindow(_window)) : void();
 }
 
 void GLWindow::Minimize(bool minimize)
 {
-    
+    _window ? (minimize ? glfwIconifyWindow(_window) : glfwRestoreWindow(_window)) : void();
 }
 
 void GLWindow::Float(bool windowFloat)
 {
-    
+    _window ? glfwSetWindowAttrib(_window, GLFW_FLOATING, windowFloat) : void();
 }
 
 /* \brief Sets a keyboard input callback
