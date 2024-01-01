@@ -456,10 +456,6 @@ void GLWindow::CheckSize(GLSize size)
 
 void GLWindow::SetHints(GLHints hints)
 {
-    if (hints & GL_RESIZABLE)
-    {
-        volatile int i = 0;
-    }
     hints & GL_RESIZABLE     ? glfwWindowHint(GLFW_RESIZABLE,     GLFW_TRUE) : glfwWindowHint(GLFW_RESIZABLE,     GLFW_FALSE);
     hints & GL_VISIBLE       ? glfwWindowHint(GLFW_VISIBLE,       GLFW_TRUE) : glfwWindowHint(GLFW_VISIBLE,       GLFW_FALSE);
     hints & GL_DECORATED     ? glfwWindowHint(GLFW_DECORATED,     GLFW_TRUE) : glfwWindowHint(GLFW_DECORATED,     GLFW_FALSE);
