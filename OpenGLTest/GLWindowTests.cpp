@@ -169,7 +169,7 @@ TEST(OpenGLWindowTests, GLMonitorCallbackTest)
 	EXPECT_TRUE(window.SetMonitorCallback(NULL) == MonitorCallbackTest);
 }
 
-TEST(OpenGLWindowTests, GLAttachShaderToWindow)
+TEST(OpenGLWindowTests, GLAttachShaderToWindowTest)
 {
 	GLWindow window(GLSize(200, 200), " ");
 	GLShader * shader1 = new GLShader;
@@ -185,4 +185,53 @@ TEST(OpenGLWindowTests, GLAttachShaderToWindow)
 	
 	EXPECT_NE(window.GetAttachedShader(), shader1);
 	EXPECT_EQ(window.GetAttachedShader(), shader2);
+}
+
+TEST(OpenGLWindowTests, GLWindowAttributesTest)
+{
+	GLWindow window(GLSize(200, 200), " ");
+
+	window.Show();
+	window.Focus();
+	window.Maximize();
+	window.SetWindowResizable();
+	window.Float();
+	window.SetWindowDecorated();
+	window.SetWindowAutoMinimize();
+	window.SetFocusOnShow();
+
+	EXPECT_TRUE(window.IsWindowVisible());
+	EXPECT_TRUE(window.IsWindowFocused());
+	EXPECT_TRUE(window.IsWindowMaximized());
+	EXPECT_TRUE(window.IsWindowResizable());
+	EXPECT_TRUE(window.IsWindowFloating());
+	EXPECT_TRUE(window.IsWindowDecorated());
+	EXPECT_TRUE(window.IsWindowAutoMinimized());
+	EXPECT_TRUE(window.IsWindowFocusedOnShow());
+
+	window.Hide();
+	window.Focus(false);
+	window.Maximize(false);
+	window.SetWindowResizable(false);
+	window.Float(false);
+	window.SetWindowDecorated(false);
+	window.SetWindowAutoMinimize(false);
+	window.SetFocusOnShow(false);
+
+	EXPECT_FALSE(window.IsWindowVisible());
+	EXPECT_FALSE(window.IsWindowFocused());
+	EXPECT_FALSE(window.IsWindowMaximized());
+	EXPECT_FALSE(window.IsWindowResizable());
+	EXPECT_FALSE(window.IsWindowFloating());
+	EXPECT_FALSE(window.IsWindowDecorated());
+	EXPECT_FALSE(window.IsWindowAutoMinimized());
+	EXPECT_FALSE(window.IsWindowFocusedOnShow());
+
+	window.Minimize();
+
+	EXPECT_TRUE(window.IsWindowMinimized());
+
+	window.Minimize(false);
+
+	EXPECT_FALSE(window.IsWindowMinimized());
 }

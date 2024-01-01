@@ -74,7 +74,7 @@ TEST(OpenGLShaderTest, GLUseShaderProgramTest)
 	EXPECT_TRUE(shaderProgram.IsProgramUsed());
 }
 
-TEST(OpenGLShaderTest, GLAttachBufferToShader)
+TEST(OpenGLShaderTest, GLAttachBufferToShaderTest)
 {
 	GLWindow window(GLSize(200, 200), " ");
 	GLShader* shader  = new GLShader;

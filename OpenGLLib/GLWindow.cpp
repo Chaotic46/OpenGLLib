@@ -7,8 +7,8 @@ GLWindow::GLWindow() : _window(NULL),
 
 }
 
-GLWindow::GLWindow(GLSize size, std::string title, unsigned int major, unsigned int minor) : _window(NULL),
-                                                                                             _shader(NULL)
+GLWindow::GLWindow(GLSize size, std::string title, unsigned int major, unsigned int minor, unsigned int hints) : _window(NULL),
+                                                                                                                 _shader(NULL)
 {
     Create(size, title, major, minor);
 }
@@ -26,7 +26,7 @@ GLWindow::~GLWindow()
     }
 }
 
-bool GLWindow::Create(GLSize size, std::string title, unsigned int major, unsigned int minor)
+bool GLWindow::Create(GLSize size, std::string title, unsigned int major, unsigned int minor, unsigned int hints)
 {
     glfwInit();
 
@@ -155,6 +155,71 @@ void GLWindow::SwapBuffers()
     }
 }
 
+bool GLWindow::IsWindowResizable()
+{
+    return false;
+}
+
+bool GLWindow::IsWindowDecorated()
+{
+    return false;
+}
+
+bool GLWindow::IsWindowMaximized()
+{
+    return false;
+}
+
+bool GLWindow::IsWindowMinimized()
+{
+    return false;
+}
+
+bool GLWindow::IsWindowVisible()
+{
+    return false;
+}
+
+bool GLWindow::IsWindowAutoMinimized()
+{
+    return false;
+}
+
+bool GLWindow::IsWindowFloating()
+{
+    return false;
+}
+
+bool GLWindow::IsWindowFocusedOnShow()
+{
+    return false;
+}
+
+bool GLWindow::IsWindowFocused()
+{
+    return false;
+}
+
+void GLWindow::SetWindowResizable(bool resizable)
+{
+    
+}
+
+void GLWindow::SetWindowDecorated(bool decorate)
+{
+    
+}
+
+void GLWindow::SetWindowAutoMinimize(bool autoIconify)
+{
+    
+}
+
+void GLWindow::SetFocusOnShow(bool focus)
+{
+    
+}
+
 void GLWindow::Show()
 {
     if (_window)
@@ -169,6 +234,26 @@ void GLWindow::Hide()
     {
         glfwHideWindow(_window);
     }
+}
+
+void GLWindow::Focus(bool focus)
+{
+    
+}
+
+void GLWindow::Maximize(bool maximize)
+{
+    
+}
+
+void GLWindow::Minimize(bool minimize)
+{
+    
+}
+
+void GLWindow::Float(bool windowFloat)
+{
+    
 }
 
 /* \brief Sets a keyboard input callback

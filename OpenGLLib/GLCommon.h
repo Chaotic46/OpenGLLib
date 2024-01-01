@@ -8,6 +8,8 @@
 
 typedef std::pair<int, int> GLSize;
 
+/* \brief Struct to handle the color components for the background of a window.
+ */
 struct GLRGBA
 {
 public:

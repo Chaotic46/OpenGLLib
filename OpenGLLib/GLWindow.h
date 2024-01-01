@@ -10,10 +10,10 @@ class GLWindow
 {
 public:
 	GLWindow();
-	GLWindow(GLSize size, std::string title, unsigned int major = 3, unsigned int minor = 3);
+	GLWindow(GLSize size, std::string title, unsigned int major = 3, unsigned int minor = 3, unsigned int hints = 0);
 	~GLWindow();
 
-	bool Create(GLSize size, std::string title, unsigned int major = 3, unsigned int minor = 3);
+	bool Create(GLSize size, std::string title, unsigned int major = 3, unsigned int minor = 3, unsigned int hints = 0);
 
 	bool IsInitialized();
 
@@ -33,8 +33,27 @@ public:
 	void ClearBackground();
 	void SwapBuffers();
 
+	bool IsWindowResizable();
+	bool IsWindowDecorated();
+	bool IsWindowMaximized();
+	bool IsWindowMinimized();
+	bool IsWindowVisible();
+	bool IsWindowAutoMinimized();
+	bool IsWindowFloating();
+	bool IsWindowFocusedOnShow();
+	bool IsWindowFocused();
+
+	void SetWindowResizable(bool resizable = true);
+	void SetWindowDecorated(bool decorate = true);
+	void SetWindowAutoMinimize(bool autoIconify = true);
+	void SetFocusOnShow(bool focus = true);
+
 	void Show();
 	void Hide();
+	void Focus(bool focus = true);
+	void Maximize(bool maximize = true);
+	void Minimize(bool minimize = true);
+	void Float(bool windowFloat = true);
 
 	// Callbacks to user inputs
 	GLFWkeyfun         SetKeyCallback(GLFWkeyfun callback);
