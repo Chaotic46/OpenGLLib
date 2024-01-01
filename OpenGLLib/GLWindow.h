@@ -10,10 +10,10 @@ class GLWindow
 {
 public:
 	GLWindow();
-	GLWindow(GLSize size, std::string title, unsigned int major = 3, unsigned int minor = 3, unsigned int hints = 0);
+	GLWindow(GLSize size, std::string title, unsigned int major = 3, unsigned int minor = 3, GLHints hints = GL_DEFAULT);
 	~GLWindow();
 
-	bool Create(GLSize size, std::string title, unsigned int major = 3, unsigned int minor = 3, unsigned int hints = 0);
+	bool Create(GLSize size, std::string title, unsigned int major = 3, unsigned int minor = 3, GLHints hints = GL_DEFAULT);
 
 	bool IsInitialized();
 
@@ -85,6 +85,7 @@ private:
 	void SetMinor(unsigned int minor);
 	void CheckVersion(unsigned int & major, unsigned int & minor);
 	void CheckSize(GLSize size);
+	void SetHints(GLHints hints);
 
 	GLFWwindow * _window;
 	GLShader   * _shader;

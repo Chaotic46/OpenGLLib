@@ -253,7 +253,7 @@ TEST(OpenGLWindowTests, GLWindowHintsTest)
 	EXPECT_FALSE(window.IsWindowAutoMinimized());
 	EXPECT_FALSE(window.IsWindowMaximized());
 
-	GLWindow window2(GLSize(200, 200), " ", GL_AUTO_MINIMIZE | GL_MAXIMIZED);
+	GLWindow window2(GLSize(200, 200), " ", 3, 3, (GLHints)(GL_AUTO_MINIMIZE | GL_MAXIMIZED));
 
 	EXPECT_FALSE(window2.IsWindowVisible());
 	EXPECT_FALSE(window2.IsWindowResizable());

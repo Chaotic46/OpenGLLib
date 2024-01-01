@@ -7,10 +7,10 @@ GLWindow::GLWindow() : _window(NULL),
 
 }
 
-GLWindow::GLWindow(GLSize size, std::string title, unsigned int major, unsigned int minor, unsigned int hints) : _window(NULL),
+GLWindow::GLWindow(GLSize size, std::string title, unsigned int major, unsigned int minor, GLHints hints) : _window(NULL),
                                                                                                                  _shader(NULL)
 {
-    Create(size, title, major, minor);
+    Create(size, title, major, minor, hints);
 }
 
 GLWindow::~GLWindow()
@@ -26,7 +26,7 @@ GLWindow::~GLWindow()
     }
 }
 
-bool GLWindow::Create(GLSize size, std::string title, unsigned int major, unsigned int minor, unsigned int hints)
+bool GLWindow::Create(GLSize size, std::string title, unsigned int major, unsigned int minor, GLHints hints)
 {
     glfwInit();
 
@@ -36,6 +36,8 @@ bool GLWindow::Create(GLSize size, std::string title, unsigned int major, unsign
     SetMajor(major);
     SetMinor(minor);
 
+    SetHints(hints);
+
     _window = glfwCreateWindow(size.first, size.second, title.c_str(), NULL, NULL);
 
     if (!_window)
@@ -44,7 +46,7 @@ bool GLWindow::Create(GLSize size, std::string title, unsigned int major, unsign
         return false;
     }
 
-    _title = title;
+    _title       = title;
     _initialized = true;
     glfwMakeContextCurrent(_window);
     gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
@@ -450,4 +452,20 @@ void GLWindow::CheckSize(GLSize size)
     {
         size.second = 1;
     }
+}
+
+void GLWindow::SetHints(GLHints hints)
+{
+    if (hints & GL_RESIZABLE)
+    {
+        volatile int i = 0;
+    }
+    hints & GL_RESIZABLE     ? glfwWindowHint(GLFW_RESIZABLE,     GLFW_TRUE) : glfwWindowHint(GLFW_RESIZABLE,     GLFW_FALSE);
+    hints & GL_VISIBLE       ? glfwWindowHint(GLFW_VISIBLE,       GLFW_TRUE) : glfwWindowHint(GLFW_VISIBLE,       GLFW_FALSE);
+    hints & GL_DECORATED     ? glfwWindowHint(GLFW_DECORATED,     GLFW_TRUE) : glfwWindowHint(GLFW_DECORATED,     GLFW_FALSE);
+    hints & GL_FOCUSED       ? glfwWindowHint(GLFW_FOCUSED,       GLFW_TRUE) : glfwWindowHint(GLFW_FOCUSED,       GLFW_FALSE);
+    hints & GL_AUTO_MINIMIZE ? glfwWindowHint(GLFW_AUTO_ICONIFY,  GLFW_TRUE) : glfwWindowHint(GLFW_AUTO_ICONIFY,  GLFW_FALSE);
+    hints & GL_FLOATING      ? glfwWindowHint(GLFW_FLOATING,      GLFW_TRUE) : glfwWindowHint(GLFW_FLOATING,      GLFW_FALSE);
+    hints & GL_MAXIMIZED     ? glfwWindowHint(GLFW_MAXIMIZED,     GLFW_TRUE) : glfwWindowHint(GLFW_MAXIMIZED,     GLFW_FALSE);
+    hints & GL_FOCUS_ON_SHOW ? glfwWindowHint(GLFW_FOCUS_ON_SHOW, GLFW_TRUE) : glfwWindowHint(GLFW_FOCUS_ON_SHOW, GLFW_FALSE);
 }
