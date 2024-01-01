@@ -141,10 +141,11 @@ void GLEngine::EngineRenderingThread::RenderThread(EngineRenderingThread* render
 		{
 			GLWindow * window = renderThread->_engine->_windowVector[i];
 			GLShader * shader = window->GetAttachedShader();
+			GLBuffer * buffer = shader->GetAttachedBuffer();
 
 			window->SetCurrentContext();
 
-			// We need to load glad for the rendering thread, so we do it the first time through.
+			// We need to load glad for the rendering thread, so we do it on the very first iteration.
 			if (startup)
 			{
 				startup = false;
@@ -155,6 +156,11 @@ void GLEngine::EngineRenderingThread::RenderThread(EngineRenderingThread* render
 
 			if (shader)
 			{
+				if (buffer)
+				{
+					buffer->BindVertexArray();
+				}
+
 				shader->UseProgram();
 				glDrawArrays(GL_TRIANGLES, 0, 3);
 			}

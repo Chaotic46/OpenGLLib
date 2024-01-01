@@ -3,7 +3,8 @@
 GLShader::GLShader() : _vertex(0),
                        _fragment(0),
                        _geometry(0),
-                       _program(0)
+                       _program(0),
+                       _buffer(NULL)
 {
 
 }
@@ -124,14 +125,14 @@ bool GLShader::IsProgramUsed()
 	return true;
 }
 
-void GLShader::AttachBuffer(const GLBuffer* buffer)
+void GLShader::AttachBuffer(GLBuffer* buffer)
 {
-	
+	_buffer = buffer;
 }
 
 GLBuffer* GLShader::GetAttachedBuffer() const
 {
-	return NULL;
+	return _buffer;
 }
 
 /* \brief Creates a new shader. This will preemptively detach the shader if it is already attached to a shader program.

@@ -18,7 +18,7 @@ public:
 	void UseProgram();
 	bool IsProgramUsed();
 	
-	void AttachBuffer(const GLBuffer * buffer);
+	void AttachBuffer(GLBuffer * buffer);
 	GLBuffer* GetAttachedBuffer() const;
 
 private:
