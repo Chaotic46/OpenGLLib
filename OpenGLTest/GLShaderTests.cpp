@@ -172,6 +172,8 @@ TEST(OpenGLShaderTest, GLModifyUniformsTest)
 	float        outFloat[kNumValues];
 	unsigned int outUnsigned[kNumValues];
 
+	int          sizeArray[] = {1, 2, 2, 4, 3, 6, 4, 8};
+
 	EXPECT_TRUE(shaderProgram.CreateVertex(vertexUniformShader));
 	EXPECT_TRUE(shaderProgram.CreateFragment(fragmentShader));
 	EXPECT_TRUE(shaderProgram.LinkProgram());
@@ -188,23 +190,27 @@ TEST(OpenGLShaderTest, GLModifyUniformsTest)
 	}
 
 	// Test non-matrix uniforms
-	for (unsigned int i = 1; i <= 8; i++)
+	for (unsigned int i = 0; i < 8; i++)
 	{
-		std::string intStr   = "inInt"   + std::to_string(i) + (i % 2 == 0 ? "V" : "");
-		std::string uintStr  = "inUInt"  + std::to_string(i) + (i % 2 == 0 ? "V" : "");
-		std::string floatStr = "inFloat" + std::to_string(i) + (i % 2 == 0 ? "V" : "");
+		int  numLabel = (i / 2) + 1;
+		bool isArray  = (i + 1) % 2 == 0;
 
-		ASSERT_TRUE(shaderProgram.SetUniform(intStr.c_str(),   inInt,         GL_UNIFORM_INT,   i));
-		ASSERT_TRUE(shaderProgram.SetUniform(uintStr.c_str(),  inUnsignedInt, GL_UNIFORM_UINT,  i));
-		ASSERT_TRUE(shaderProgram.SetUniform(floatStr.c_str(), inFloat,       GL_UNIFORM_FLOAT, i));
+		std::string intStr   = "inInt"   + std::to_string(numLabel) + (isArray ? "V" : "");
+		std::string uintStr  = "inUInt"  + std::to_string(numLabel) + (isArray ? "V" : "");
+		std::string floatStr = "inFloat" + std::to_string(numLabel) + (isArray ? "V" : "");
 
-		shaderProgram.GetUniformData(intStr.c_str(),   outInt,      GL_UNIFORM_INT,   i);
-		shaderProgram.GetUniformData(uintStr.c_str(),  outUnsigned, GL_UNIFORM_UINT,  i);
-		shaderProgram.GetUniformData(floatStr.c_str(), outFloat,    GL_UNIFORM_FLOAT, i);
+		
+		ASSERT_TRUE(shaderProgram.SetUniform(intStr.c_str(),   inInt,         (GLUniformType)(GL_UNIFORM_INT1   + (i / 2)), isArray ? 2 : 1));
+		ASSERT_TRUE(shaderProgram.SetUniform(uintStr.c_str(),  inUnsignedInt, (GLUniformType)(GL_UNIFORM_UINT1  + (i / 2)), isArray ? 2 : 1));
+		ASSERT_TRUE(shaderProgram.SetUniform(floatStr.c_str(), inFloat,       (GLUniformType)(GL_UNIFORM_FLOAT1 + (i / 2)), isArray ? 2 : 1));
+		
+		shaderProgram.GetUniformData(intStr.c_str(),   outInt,      (GLUniformType)(GL_UNIFORM_INT1   + (i / 2)), isArray ? 2 : 1);
+		shaderProgram.GetUniformData(uintStr.c_str(),  outUnsigned, (GLUniformType)(GL_UNIFORM_UINT1  + (i / 2)), isArray ? 2 : 1);
+		shaderProgram.GetUniformData(floatStr.c_str(), outFloat,    (GLUniformType)(GL_UNIFORM_FLOAT1 + (i / 2)), isArray ? 2 : 1);
 
-		EXPECT_TRUE(CompareVals<int>         (outInt,      inInt,         i));
-		EXPECT_TRUE(CompareVals<unsigned int>(outUnsigned, inUnsignedInt, i));
-		EXPECT_TRUE(CompareVals<float>       (outFloat,    inFloat,       i));
+		EXPECT_TRUE(CompareVals<int>         (outInt,      inInt,         sizeArray[i]));
+		EXPECT_TRUE(CompareVals<unsigned int>(outUnsigned, inUnsignedInt, sizeArray[i]));
+		EXPECT_TRUE(CompareVals<float>       (outFloat,    inFloat,       sizeArray[i]));
 	}
 
 	// Now test all the matrices

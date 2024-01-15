@@ -144,6 +144,11 @@ bool GLShader::SetUniform(const char* uniform, void* uniformData, GLUniformType 
 		return false;
 	}
 
+	switch (uniformType)
+	{
+
+	}
+
 	return true;
 }
 
