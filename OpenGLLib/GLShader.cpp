@@ -135,9 +135,16 @@ GLBuffer* GLShader::GetAttachedBuffer() const
 	return _buffer;
 }
 
-void GLShader::SetUniform(const char* uniform, void* uniformData, GLUniformType uniformType, unsigned int count)
+bool GLShader::SetUniform(const char* uniform, void* uniformData, GLUniformType uniformType, unsigned int count)
 {
-	
+	int location = glGetUniformLocation(_program, uniform);
+
+	if (location < -1)
+	{
+		return false;
+	}
+
+	return true;
 }
 
 void GLShader::GetUniformData(const char* uniform, void* uniformData, GLUniformType uniformType, unsigned int size)

@@ -21,7 +21,7 @@ public:
 	void AttachBuffer(GLBuffer * buffer);
 	GLBuffer* GetAttachedBuffer() const;
 
-	void SetUniform(const char * uniform, void * uniformData, GLUniformType uniformType, unsigned int count = 1);
+	bool SetUniform(const char * uniform, void * uniformData, GLUniformType uniformType, unsigned int count = 1);
 	void GetUniformData(const char * uniform, void * uniformData, GLUniformType uniformType, unsigned int size = 0);
 
 private:
