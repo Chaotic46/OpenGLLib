@@ -146,15 +146,47 @@ bool GLShader::SetUniform(const char* uniform, void* uniformData, GLUniformType 
 
 	switch (uniformType)
 	{
+		case(GL_UNIFORM_INT1): glUniform1iv(location, count, (GLint*)uniformData); break;
+		case(GL_UNIFORM_INT2): glUniform2iv(location, count, (GLint*)uniformData); break;
+		case(GL_UNIFORM_INT3): glUniform3iv(location, count, (GLint*)uniformData); break;
+		case(GL_UNIFORM_INT4): glUniform4iv(location, count, (GLint*)uniformData); break;
 
+		case(GL_UNIFORM_UINT1): glUniform1uiv(location, count, (GLuint*)uniformData); break;
+		case(GL_UNIFORM_UINT2): glUniform2uiv(location, count, (GLuint*)uniformData); break;
+		case(GL_UNIFORM_UINT3): glUniform3uiv(location, count, (GLuint*)uniformData); break;
+		case(GL_UNIFORM_UINT4): glUniform4uiv(location, count, (GLuint*)uniformData); break;
+
+		case(GL_UNIFORM_FLOAT1): glUniform1fv(location, count, (GLfloat*)uniformData); break;
+		case(GL_UNIFORM_FLOAT2): glUniform2fv(location, count, (GLfloat*)uniformData); break;
+		case(GL_UNIFORM_FLOAT3): glUniform3fv(location, count, (GLfloat*)uniformData); break;
+		case(GL_UNIFORM_FLOAT4): glUniform4fv(location, count, (GLfloat*)uniformData); break;
+
+		case(GL_UNIFORM_MAT2):   glUniformMatrix2fv  (location, count, false, (GLfloat*)uniformData); break;
+		case(GL_UNIFORM_MAT2x3): glUniformMatrix2x3fv(location, count, false, (GLfloat*)uniformData); break;
+		case(GL_UNIFORM_MAT2x4): glUniformMatrix2x4fv(location, count, false, (GLfloat*)uniformData); break;
+
+		case(GL_UNIFORM_MAT3):   glUniformMatrix3fv  (location, count, false, (GLfloat*)uniformData); break;
+		case(GL_UNIFORM_MAT3x2): glUniformMatrix3x2fv(location, count, false, (GLfloat*)uniformData); break;
+		case(GL_UNIFORM_MAT3x4): glUniformMatrix3x4fv(location, count, false, (GLfloat*)uniformData); break;
+
+		case(GL_UNIFORM_MAT4):   glUniformMatrix4fv  (location, count, false, (GLfloat*)uniformData); break;
+		case(GL_UNIFORM_MAT4x2): glUniformMatrix4x2fv(location, count, false, (GLfloat*)uniformData); break;
+		case(GL_UNIFORM_MAT4x3): glUniformMatrix4x3fv(location, count, false, (GLfloat*)uniformData); break;
 	}
 
 	return true;
 }
 
-void GLShader::GetUniformData(const char* uniform, void* uniformData, GLUniformType uniformType, unsigned int size)
+bool GLShader::GetUniformData(const char* uniform, void* uniformData, GLUniformType uniformType, unsigned int size)
 {
-	
+	int location = glGetUniformLocation(_program, uniform);
+
+	if (location < -1)
+	{
+		return false;
+	}
+
+	return true;
 }
 
 /* \brief Creates a new shader. This will preemptively detach the shader if it is already attached to a shader program.
