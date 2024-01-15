@@ -135,6 +135,16 @@ GLBuffer* GLShader::GetAttachedBuffer() const
 	return _buffer;
 }
 
+void GLShader::SetUniform(const char* uniform, void* uniformData, GLUniformType uniformType, unsigned int count)
+{
+	
+}
+
+void GLShader::GetUniformData(const char* uniform, void* uniformData, GLUniformType uniformType, unsigned int size)
+{
+	
+}
+
 /* \brief Creates a new shader. This will preemptively detach the shader if it is already attached to a shader program.
  */
 bool GLShader::CreateShader(unsigned int& shaderID, GLenum shaderType, const char* shaderProgram)

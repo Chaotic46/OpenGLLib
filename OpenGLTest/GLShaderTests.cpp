@@ -7,6 +7,57 @@
 
 // Sample shader programs
 
+// Vertex shader Using multiple uniforms
+const char* vertexUniformShader =
+"#version 330 core\n"
+"layout(location = 0) in vec3 aPos;\n"
+""
+"uniform float inFloat1;"
+"uniform vec2  inFloat2;"
+"uniform vec3  inFloat3;"
+"uniform vec4  inFloat4;"
+""
+"uniform int   inInt1;"
+"uniform ivec2 inInt2;"
+"uniform ivec3 inInt3;"
+"uniform ivec4 inInt4;"
+""
+"uniform uint  inUInt1;"
+"uniform uvec2 inUInt2;"
+"uniform uvec3 inUInt3;"
+"uniform uvec4 inUInt4;"
+""
+"uniform float inFloat1V[2];"
+"uniform vec2  inFloat2V[2];"
+"uniform vec3  inFloat3V[2];"
+"uniform vec4  inFloat4V[2];"
+""
+"uniform int   inInt1V[2];"
+"uniform ivec2 inInt2V[2];"
+"uniform ivec3 inInt3V[2];"
+"uniform ivec4 inInt4V[2];"
+""
+"uniform uint  inUInt1V[2];"
+"uniform uvec2 inUInt2V[2];"
+"uniform uvec3 inUInt3V[2];"
+"uniform uvec4 inUInt4V[2];"
+""
+"uniform mat2 inMat2V[2];"
+"uniform mat3 inMat3V[2];"
+"uniform mat4 inMat4V[2];"
+""
+"uniform mat2x3 inMat2x3V[2];"
+"uniform mat3x2 inMat3x2V[2];"
+"uniform mat4x2 inMat4x2V[2];"
+"uniform mat2x4 inMat2x4V[2];"
+"uniform mat4x3 inMat4x3V[2];"
+"uniform mat3x4 inMat3x4V[2];"
+""
+"void main()\n"
+"{\n"
+"	gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
+"}\n";
+
 // Vertex shader obtained from learnopengl.com
 const char* vertexShader =
 "#version 330 core\n"
@@ -42,6 +93,20 @@ const char* geometryShader =
 "\n"
 "    EndPrimitive();\n"
 "}\n";
+
+template<class T>
+bool CompareVals(T* in1, T* in2, int size)
+{
+	for (unsigned int i = 0; i < size; i++)
+	{
+		if (in1[i] != in2[i])
+		{
+			return false;
+		}
+	}
+
+	return true;
+}
 
 TEST(OpenGLShaderTest, GLShaderTest)
 {
@@ -91,4 +156,111 @@ TEST(OpenGLShaderTest, GLAttachBufferToShaderTest)
 
 	EXPECT_NE(shader->GetAttachedBuffer(), buffer1);
 	EXPECT_EQ(shader->GetAttachedBuffer(), buffer2);
+}
+
+TEST(OpenGLShaderTest, GLModifyUniformsTest)
+{
+	GLShader     shaderProgram;
+
+	const int    kNumValues = 32;
+
+	unsigned int inUnsignedInt[kNumValues];
+	int          inInt[kNumValues];
+	float        inFloat[kNumValues];
+
+	int          outInt[kNumValues];
+	float        outFloat[kNumValues];
+	unsigned int outUnsigned[kNumValues];
+
+	EXPECT_TRUE(shaderProgram.CreateVertex(vertexUniformShader));
+	EXPECT_TRUE(shaderProgram.CreateFragment(fragmentShader));
+	EXPECT_TRUE(shaderProgram.LinkProgram());
+
+	// Use the linked program so the uniforms are enabled
+	shaderProgram.UseProgram();
+
+	// Setup test values
+	for (int i = 0; i < kNumValues; i++)
+	{
+		inUnsignedInt[i] = i + 1;
+		inInt[i]         = -1 * (i + 1);
+		inFloat[i]       = i + 0.5f;
+	}
+
+	// Test non-array uniforms
+	for (unsigned int i = 1; i <= 4; i++)
+	{
+		std::string intStr   = "inInt"   + std::to_string(i);
+		std::string uintStr  = "inUInt"  + std::to_string(i);
+		std::string floatStr = "inFloat" + std::to_string(i);
+
+		shaderProgram.SetUniform(intStr.c_str(),   inInt,         GL_UNIFORM_INT, i);
+		shaderProgram.SetUniform(uintStr.c_str(),  inUnsignedInt, GL_UNIFORM_UINT, i);
+		shaderProgram.SetUniform(floatStr.c_str(), inFloat,       GL_UNIFORM_FLOAT, i);
+
+		shaderProgram.GetUniformData(intStr.c_str(),   outInt,      GL_UNIFORM_INT,   i);
+		shaderProgram.GetUniformData(uintStr.c_str(),  outUnsigned, GL_UNIFORM_UINT,  i);
+		shaderProgram.GetUniformData(floatStr.c_str(), outFloat,    GL_UNIFORM_FLOAT, i);
+
+		EXPECT_TRUE(CompareVals<int>         (outInt,      inInt,         i));
+		EXPECT_TRUE(CompareVals<unsigned int>(outUnsigned, inUnsignedInt, i));
+		EXPECT_TRUE(CompareVals<float>       (outFloat,    inFloat,       i));
+	}
+
+	// Test uniforms with arrays
+	for (unsigned int i = 2; i <= 8; i += 2)
+	{
+		std::string intStr   = "inInt"   + std::to_string(i / 2) + "V";
+		std::string uintStr  = "inUInt"  + std::to_string(i / 2) + "V";
+		std::string floatStr = "inFloat" + std::to_string(i / 2) + "V";
+
+		shaderProgram.SetUniform(intStr.c_str(),   inInt,         GL_UNIFORM_INT,   i);
+		shaderProgram.SetUniform(uintStr.c_str(),  inUnsignedInt, GL_UNIFORM_UINT,  i);
+		shaderProgram.SetUniform(floatStr.c_str(), inFloat,       GL_UNIFORM_FLOAT, i);
+
+		shaderProgram.GetUniformData(intStr.c_str(),   outInt,      GL_UNIFORM_INT,   i);
+		shaderProgram.GetUniformData(uintStr.c_str(),  outUnsigned, GL_UNIFORM_UINT,  i);
+		shaderProgram.GetUniformData(floatStr.c_str(), outFloat,    GL_UNIFORM_FLOAT, i);
+
+		EXPECT_TRUE(CompareVals<int>         (outInt,      inInt,         i));
+		EXPECT_TRUE(CompareVals<unsigned int>(outUnsigned, inUnsignedInt, i));
+		EXPECT_TRUE(CompareVals<float>       (outFloat,    inFloat,       i));
+	}
+
+	// Now test all the matrices
+	shaderProgram.SetUniform("inMat2V", inFloat, GL_UNIFORM_MAT2, 8);
+	shaderProgram.GetUniformData("inMat2V", outFloat, GL_UNIFORM_MAT2, 8);
+	EXPECT_TRUE(CompareVals<float>(outFloat, inFloat, 8));
+
+	shaderProgram.SetUniform("inMat3V", inFloat, GL_UNIFORM_MAT3, 18);
+	shaderProgram.GetUniformData("inMat3V", outFloat, GL_UNIFORM_MAT3, 18);
+	EXPECT_TRUE(CompareVals<float>(outFloat, inFloat, 32));
+
+	shaderProgram.SetUniform("inMat4V", inFloat, GL_UNIFORM_MAT4, 32);
+	shaderProgram.GetUniformData("inMat4V", outFloat, GL_UNIFORM_MAT4, 32);
+	EXPECT_TRUE(CompareVals<float>(outFloat, inFloat, 32));
+
+	shaderProgram.SetUniform("inMat2x3V", inFloat, GL_UNIFORM_MAT2x3, 12);
+	shaderProgram.GetUniformData("inMat2x3V", outFloat, GL_UNIFORM_MAT2x3, 12);
+	EXPECT_TRUE(CompareVals<float>(outFloat, inFloat, 12));
+
+	shaderProgram.SetUniform("inMat2x4V", inFloat, GL_UNIFORM_MAT2x4, 16);
+	shaderProgram.GetUniformData("inMat2x4V", outFloat, GL_UNIFORM_MAT2x4, 16);
+	EXPECT_TRUE(CompareVals<float>(outFloat, inFloat, 16));
+
+	shaderProgram.SetUniform("inMat3x4V", inFloat, GL_UNIFORM_MAT3x4, 24);
+	shaderProgram.GetUniformData("inMat3x4V", outFloat, GL_UNIFORM_MAT3x4, 24);
+	EXPECT_TRUE(CompareVals<float>(outFloat, inFloat, 24));
+
+	shaderProgram.SetUniform("inMat3x2V", inFloat, GL_UNIFORM_MAT3x2, 12);
+	shaderProgram.GetUniformData("inMat3x2V", outFloat, GL_UNIFORM_MAT3x2, 12);
+	EXPECT_TRUE(CompareVals<float>(outFloat, inFloat, 12));
+
+	shaderProgram.SetUniform("inMat4x3V", inFloat, GL_UNIFORM_MAT4x3, 24);
+	shaderProgram.GetUniformData("inMat4x3V", outFloat, GL_UNIFORM_MAT4x3, 24);
+	EXPECT_TRUE(CompareVals<float>(outFloat, inFloat, 24));
+
+	shaderProgram.SetUniform("inMat4x2V", inFloat, GL_UNIFORM_MAT4x2, 16);
+	shaderProgram.GetUniformData("inMat4x2V", outFloat, GL_UNIFORM_MAT4x2, 16);
+	EXPECT_TRUE(CompareVals<float>(outFloat, inFloat, 16));
 }
