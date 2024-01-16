@@ -22,7 +22,7 @@ public:
 	GLBuffer* GetAttachedBuffer() const;
 
 	bool SetUniform(const char * uniform, void * uniformData, GLUniformType uniformType, unsigned int count = 1);
-	bool GetUniformData(const char * uniform, void * uniformData, GLUniformType uniformType, unsigned int size = 0);
+	bool GetUniform(const char * uniform, void * uniformData, GLUniformType uniformType);
 
 private:
 	bool CreateShader(unsigned int& shaderID, GLenum shaderType, const char* shaderProgram);

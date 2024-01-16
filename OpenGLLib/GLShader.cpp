@@ -139,7 +139,7 @@ bool GLShader::SetUniform(const char* uniform, void* uniformData, GLUniformType 
 {
 	int location = glGetUniformLocation(_program, uniform);
 
-	if (location < -1)
+	if (location == -1)
 	{
 		return false;
 	}
@@ -177,13 +177,43 @@ bool GLShader::SetUniform(const char* uniform, void* uniformData, GLUniformType 
 	return true;
 }
 
-bool GLShader::GetUniformData(const char* uniform, void* uniformData, GLUniformType uniformType, unsigned int size)
+bool GLShader::GetUniform(const char* uniform, void* uniformData, GLUniformType uniformType)
 {
 	int location = glGetUniformLocation(_program, uniform);
 
-	if (location < -1)
+	if (location == -1)
 	{
 		return false;
+	}
+
+	switch (uniformType)
+	{
+		case(GL_UNIFORM_INT1):
+		case(GL_UNIFORM_INT2):
+		case(GL_UNIFORM_INT3):
+		case(GL_UNIFORM_INT4): glGetUniformiv(_program, location, (GLint*)uniformData); break;
+
+		case(GL_UNIFORM_UINT1):
+		case(GL_UNIFORM_UINT2):
+		case(GL_UNIFORM_UINT3):
+		case(GL_UNIFORM_UINT4): glGetUniformuiv(_program, location, (GLuint*)uniformData); break;
+
+		case(GL_UNIFORM_FLOAT1):
+		case(GL_UNIFORM_FLOAT2):
+		case(GL_UNIFORM_FLOAT3):
+		case(GL_UNIFORM_FLOAT4):
+
+		case(GL_UNIFORM_MAT2):
+		case(GL_UNIFORM_MAT2x3):
+		case(GL_UNIFORM_MAT2x4):
+
+		case(GL_UNIFORM_MAT3):
+		case(GL_UNIFORM_MAT3x2):
+		case(GL_UNIFORM_MAT3x4):
+
+		case(GL_UNIFORM_MAT4):
+		case(GL_UNIFORM_MAT4x2):
+		case(GL_UNIFORM_MAT4x3): glGetUniformfv(_program, location, (GLfloat*)uniformData); break;
 	}
 
 	return true;
@@ -194,6 +224,9 @@ bool GLShader::GetUniformData(const char* uniform, void* uniformData, GLUniformT
 bool GLShader::CreateShader(unsigned int& shaderID, GLenum shaderType, const char* shaderProgram)
 {
 	int  success = 0;
+	char msg[512];
+
+	memset(msg, 0, 512);
 
 	if (!shaderID)
 	{
@@ -208,6 +241,11 @@ bool GLShader::CreateShader(unsigned int& shaderID, GLenum shaderType, const cha
 	glCompileShader(shaderID);
 
 	glGetShaderiv(shaderID, GL_COMPILE_STATUS, &success);
+
+	if (!success)
+	{
+		glGetShaderInfoLog(shaderID, 512, NULL, msg);
+	}
 
 	return success;
 }
