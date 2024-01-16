@@ -1,7 +1,7 @@
-#include "../OpenGLLib/GLWindow.h"
-#include "../OpenGLLib/GLShader.h"
-#include "../OpenGLLib/GLEngine.h"
-#include "../OpenGLLib/GLBuffer.h"
+#include "../../OpenGLLib/GLWindow.h"
+#include "../../OpenGLLib/GLShader.h"
+#include "../../OpenGLLib/GLEngine.h"
+#include "../../OpenGLLib/GLBuffer.h"
 
 #include "Shaders.h"
 

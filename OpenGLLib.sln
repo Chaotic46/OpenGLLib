@@ -10,10 +10,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OpenGLTest", "OpenGLTest\Op
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OpenGLLib", "OpenGLLib\OpenGLLib.vcxproj", "{571CDDC6-22AF-4C77-BF95-291FFB774ABD}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OpenGLLibSamples", "OpenGLLibSamples\OpenGLLibSamples.vcxproj", "{AEEA8DB0-9A26-45E9-80C0-39FE6F65C253}"
-	ProjectSection(ProjectDependencies) = postProject
-		{571CDDC6-22AF-4C77-BF95-291FFB774ABD} = {571CDDC6-22AF-4C77-BF95-291FFB774ABD}
-	EndProjectSection
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OpenGLLibSamples", "OpenGLLibSamples", "{7D5ECF32-CCC5-4A58-9479-3828D2657127}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OpenGLLibSamples", "OpenGLSamples\OpenGLTriangle\OpenGLLibSamples.vcxproj", "{AEEA8DB0-9A26-45E9-80C0-39FE6F65C253}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -50,6 +49,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{AEEA8DB0-9A26-45E9-80C0-39FE6F65C253} = {7D5ECF32-CCC5-4A58-9479-3828D2657127}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1EF38DCE-218A-4781-B2B8-BEDA3E100DF5}
